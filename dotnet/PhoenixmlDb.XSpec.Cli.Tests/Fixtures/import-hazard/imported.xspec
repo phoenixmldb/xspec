@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec">
+  <x:scenario label="the identity transform">
+    <x:context><doc>hello</doc></x:context>
+    <x:expect label="copies its input" test="exists($x:result//doc)"/>
+  </x:scenario>
+</x:description>

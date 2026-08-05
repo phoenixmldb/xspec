@@ -53,25 +53,10 @@ public static class XSpecRunner
         }
 
         // ---- Stage 1: Compile ----
-        // The compiler (compiler/compile-xslt-tests.xsl, transitively including the rest of
-        // src/) only exists as embedded resources until EmbeddedXSpecSource.MaterializedRoot
-        // extracts it to real files — see that class for why. The compile transform runs with
-        // apply-templates against the .xspec source document (bin/xspec.sh passes no -it: for
-        // this step; the match="document-node()" template in compiler/base/main.xsl dispatches
-        // to the named x:main template itself). x:import inside the .xspec is resolved via the
-        // *source document's* base URI, which is why SetSourceDocumentUri is set to the
-        // .xspec's own absolute path rather than left unset.
         string generatedStylesheet;
         try
         {
-            var compilerRoot = EmbeddedXSpecSource.MaterializedRoot;
-            var compilerPath = Path.Combine(compilerRoot, "compiler", "compile-xslt-tests.xsl");
-            var compilerXml = await File.ReadAllTextAsync(compilerPath, ct).ConfigureAwait(false);
-
-            var compileTransformer = new XsltTransformer();
-            await compileTransformer.LoadStylesheetAsync(compilerXml, new Uri(compilerPath)).ConfigureAwait(false);
-            compileTransformer.SetSourceDocumentUri(xspecUri);
-            generatedStylesheet = await compileTransformer.TransformAsync(xspecXml, ct).ConfigureAwait(false);
+            generatedStylesheet = await CompileAsync(xspecXml, xspecUri, ct).ConfigureAwait(false);
         }
         catch (OperationCanceledException)
         {
@@ -84,21 +69,10 @@ public static class XSpecRunner
         }
 
         // ---- Stage 2: Run ----
-        // The base-URI hazard this project exists to expose: the generated stylesheet's own
-        // `xsl:import` of the stylesheet-under-test is a literal, unresolved copy of
-        // x:description/@stylesheet (see compiler/xslt/main.xsl, `<xsl:attribute name="href"
-        // select="@stylesheet" />`) — e.g. "identity.xsl". That import must resolve against
-        // the *original* .xspec's directory, not against EmbeddedXSpecSource.MaterializedRoot
-        // or any other staging location. The generated text is never written to a temp file;
-        // it is loaded directly with baseUri set to the .xspec's own absolute URI, so the
-        // relative "identity.xsl" resolves next to the suite where it actually lives.
         string reportXml;
         try
         {
-            var runTransformer = new XsltTransformer();
-            await runTransformer.LoadStylesheetAsync(generatedStylesheet, xspecUri).ConfigureAwait(false);
-            runTransformer.SetInitialTemplate("main", XSpecNs);
-            reportXml = await runTransformer.TransformAsync((string?)null, ct).ConfigureAwait(false);
+            reportXml = await RunGeneratedStylesheetAsync(generatedStylesheet, xspecUri, ct).ConfigureAwait(false);
         }
         catch (OperationCanceledException)
         {
@@ -120,6 +94,63 @@ public static class XSpecRunner
         {
             return new XSpecResult(absoluteXspecPath, XSpecStage.Assess, null, ex.Message, []);
         }
+    }
+
+    /// <summary>
+    /// Stage 1: transforms <paramref name="xspecXml"/> with XSpec's own compiler into a
+    /// generated XSLT stylesheet's source text.
+    /// </summary>
+    /// <remarks>
+    /// The compiler (compiler/compile-xslt-tests.xsl, transitively including the rest of
+    /// src/) only exists as embedded resources until <see cref="EmbeddedXSpecSource.MaterializedRoot"/>
+    /// extracts it to real files — see that class for why. The compile transform runs with
+    /// apply-templates against the .xspec source document (bin/xspec.sh passes no -it: for
+    /// this step; the match="document-node()" template in compiler/base/main.xsl dispatches
+    /// to the named x:main template itself). <c>x:import</c> inside the .xspec is resolved via
+    /// the *source document's* base URI (see <c>compiler/base/resolve-import/gather/gather-descriptions.xsl</c>,
+    /// which loads each import target with <c>fn:document(@href)</c> — resolved against the
+    /// attribute node's own base URI, i.e. the source document's), which is why
+    /// <paramref name="xspecUri"/> is passed to <see cref="XsltTransformer.SetSourceDocumentUri"/>
+    /// rather than left unset. Exposed internally (not just exercised via <see cref="RunAsync"/>)
+    /// so a test can assert on how far compilation gets independently of stage 2.
+    /// </remarks>
+    internal static async Task<string> CompileAsync(string xspecXml, Uri xspecUri, CancellationToken ct)
+    {
+        var compilerRoot = EmbeddedXSpecSource.MaterializedRoot;
+        var compilerPath = Path.Combine(compilerRoot, "compiler", "compile-xslt-tests.xsl");
+        var compilerXml = await File.ReadAllTextAsync(compilerPath, ct).ConfigureAwait(false);
+
+        var compileTransformer = new XsltTransformer();
+        await compileTransformer.LoadStylesheetAsync(compilerXml, new Uri(compilerPath)).ConfigureAwait(false);
+        compileTransformer.SetSourceDocumentUri(xspecUri);
+        return await compileTransformer.TransformAsync(xspecXml, ct).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Stage 2: loads and runs a generated stylesheet (the output of <see cref="CompileAsync"/>)
+    /// by calling its <c>{http://www.jenitennison.com/xslt/xspec}main</c> initial template with
+    /// no source document, returning the serialized <c>x:report</c>.
+    /// </summary>
+    /// <remarks>
+    /// The base-URI hazard this project exists to expose: the generated stylesheet's own
+    /// <c>xsl:import</c> of the stylesheet-under-test is a literal, unresolved copy of
+    /// <c>x:description/@stylesheet</c> (see compiler/xslt/main.xsl, <c>&lt;xsl:attribute
+    /// name="href" select="@stylesheet" /&gt;</c>) — e.g. <c>"identity.xsl"</c>. That import
+    /// must resolve against the *original* .xspec's directory, not against
+    /// <see cref="EmbeddedXSpecSource.MaterializedRoot"/> or any other staging location. The
+    /// generated text is never written to a temp file; it is loaded directly here with baseUri
+    /// set to <paramref name="xspecUri"/>, so the relative <c>"identity.xsl"</c> resolves next
+    /// to the suite where it actually lives. Exposed internally (not just exercised via
+    /// <see cref="RunAsync"/>) so this resolution can be proven directly, with a stub
+    /// <paramref name="generatedStylesheet"/> that doesn't depend on stage 1 succeeding — see
+    /// <c>BaseUriHazardTests.Stage2Import_ResolvesAgainstOriginalXspecDirectory_NotMaterializedRoot</c>.
+    /// </remarks>
+    internal static async Task<string> RunGeneratedStylesheetAsync(string generatedStylesheet, Uri xspecUri, CancellationToken ct)
+    {
+        var runTransformer = new XsltTransformer();
+        await runTransformer.LoadStylesheetAsync(generatedStylesheet, xspecUri).ConfigureAwait(false);
+        runTransformer.SetInitialTemplate("main", XSpecNs);
+        return await runTransformer.TransformAsync((string?)null, ct).ConfigureAwait(false);
     }
 
     /// <summary>
