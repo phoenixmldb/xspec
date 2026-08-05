@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>13</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>phxspec</ToolCommandName>
+    <PackageId>PhoenixmlDb.XSpec.Cli</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RootNamespace>PhoenixmlDb.XSpec.Cli</RootNamespace>
+  </PropertyGroup>
+
+  <!--
+    Embed XSpec's stylesheets so the installed tool needs no checkout and no JVM.
+    Globbing the sibling src/ tree at pack time is why this project lives inside
+    the XSpec repository: there is no vendored copy to pin, re-sync, or drift.
+
+    src/common/VERSION is embedded at its real location, "xspec/common/VERSION" — that is
+    where EmbeddedXSpecSource's on-disk materialisation must place it so
+    version-utils.xsl's `unparsed-text('VERSION')` (resolved relative to that module's own
+    base URI) finds it. EmbeddedXSpecSource.ReadStylesheet("VERSION") redirects to this same
+    resource; see the comment there for why.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="../../src/**/*.xsl" LogicalName="xspec/%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="../../src/**/*.xml" LogicalName="xspec/%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="../../src/common/VERSION" LogicalName="xspec/common/VERSION" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PhoenixmlDb.Xslt" Version="1.6.1" />
+  </ItemGroup>
+</Project>
