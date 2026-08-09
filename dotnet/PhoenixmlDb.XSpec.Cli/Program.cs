@@ -6,9 +6,9 @@ if (args.Length == 0 || args is ["-h" or "--help"])
     return args.Length == 0 ? 1 : 0;
 }
 
-if (args is [("--census"), var censusDir, ..])
+if (args is [("--census"), .. var censusPaths] && censusPaths.Length > 0)
 {
-    return await RunCensusAsync(censusDir).ConfigureAwait(false);
+    return await RunCensusAsync(censusPaths).ConfigureAwait(false);
 }
 
 var exitCode = 0;
@@ -57,14 +57,19 @@ static void PrintUsage()
 {
     Console.Error.WriteLine("""
         Usage: phxspec <suite.xspec> [suite2.xspec ...]
-               phxspec --census <dir>
+               phxspec --census <path> [path ...]
 
         Run one or more XSpec test suites against PhoenixmlDb.Xslt. No JVM, no Saxon.
 
-        --census <dir>   Sweep every *.xspec suite under <dir> through the same runner
-                          the single-suite path uses, and print a Markdown census
-                          (summary, pick-list grouped by error code, skips, per-suite
-                          detail) to stdout.
+        --census <path>...  Sweep suites through the same runner the single-suite path
+                          uses, and print a Markdown census (summary, pick-list grouped
+                          by error code, skips, per-suite detail) to stdout. Each path is
+                          either a directory (swept recursively for *.xspec) or a single
+                          .xspec file, so a sweep can be scoped to a chosen subset without
+                          moving suites out of the tree they resolve their imports against.
+
+                          PHXSPEC_SUITE_TIMEOUT_SECONDS caps each suite (default 300); one
+                          that overruns is reported as PHXSPEC-TIMEOUT and the sweep goes on.
 
         Exit codes (single-suite form):
           0   every suite ran to completion with no failures
@@ -73,36 +78,61 @@ static void PrintUsage()
 
         Exit codes (--census form):
           0   the sweep ran and the census was printed
-          2   the given directory does not exist, or contains no *.xspec suites
+          2   a given path does not exist, or no *.xspec suites were found
         """);
 }
 
-static async Task<int> RunCensusAsync(string dir)
+static async Task<int> RunCensusAsync(string[] paths)
 {
-    var absoluteDir = Path.GetFullPath(dir);
-    if (!Directory.Exists(absoluteDir))
+    var suites = new List<string>();
+    foreach (var path in paths)
     {
-        await Console.Error.WriteLineAsync($"--census: directory not found: {absoluteDir}").ConfigureAwait(false);
-        return 2;
+        var absolute = Path.GetFullPath(path);
+        if (Directory.Exists(absolute))
+        {
+            suites.AddRange(Directory.EnumerateFiles(absolute, "*.xspec", SearchOption.AllDirectories));
+        }
+        else if (File.Exists(absolute))
+        {
+            // Explicit files let a sweep be scoped to a chosen subset (e.g. only the XSLT
+            // suites at the root of xspec/test/) without moving suites out of the tree they
+            // resolve their @stylesheet and x:import against.
+            suites.Add(absolute);
+        }
+        else
+        {
+            await Console.Error.WriteLineAsync($"--census: path not found: {absolute}").ConfigureAwait(false);
+            return 2;
+        }
     }
 
-    var suites = Directory.EnumerateFiles(absoluteDir, "*.xspec", SearchOption.AllDirectories)
-        .OrderBy(p => p, StringComparer.Ordinal)
-        .ToList();
+    suites = suites.Distinct(StringComparer.Ordinal).OrderBy(p => p, StringComparer.Ordinal).ToList();
 
     if (suites.Count == 0)
     {
-        await Console.Error.WriteLineAsync($"--census: no *.xspec suites found under {absoluteDir}").ConfigureAwait(false);
+        await Console.Error.WriteLineAsync(
+            $"--census: no *.xspec suites found under {string.Join(", ", paths)}").ConfigureAwait(false);
         return 2;
     }
+
+    var timeout = CensusSuiteTimeout();
 
     var results = new List<XSpecResult>(suites.Count);
     foreach (var suite in suites)
     {
         XSpecResult result;
+        using var cts = new CancellationTokenSource(timeout);
         try
         {
-            result = await XSpecRunner.RunAsync(suite, CancellationToken.None).ConfigureAwait(false);
+            result = await XSpecRunner.RunAsync(suite, cts.Token).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException) when (cts.IsCancellationRequested)
+        {
+            // A suite that never returns must not take the sweep with it — and it must not be
+            // filed under some other error code either. It gets its own, so the census cannot
+            // report a hang as though it were a compile failure.
+            result = new XSpecResult(suite, XSpecStage.Run, "PHXSPEC-TIMEOUT",
+                $"suite did not finish within {timeout.TotalSeconds:0} s", []);
         }
         catch (Exception ex)
         {
@@ -117,4 +147,13 @@ static async Task<int> RunCensusAsync(string dir)
 
     Console.WriteLine(CensusReporter.Render(results));
     return 0;
+}
+
+static TimeSpan CensusSuiteTimeout()
+{
+    var raw = Environment.GetEnvironmentVariable("PHXSPEC_SUITE_TIMEOUT_SECONDS");
+    return int.TryParse(raw, System.Globalization.NumberStyles.Integer,
+        System.Globalization.CultureInfo.InvariantCulture, out var seconds) && seconds > 0
+        ? TimeSpan.FromSeconds(seconds)
+        : TimeSpan.FromSeconds(300);
 }

@@ -52,6 +52,10 @@ public static class XSpecRunner
             return new XSpecResult(absoluteXspecPath, XSpecStage.Compile, null, ex.Message, []);
         }
 
+        var skipReason = ClassifySkip(xspecXml);
+        if (skipReason != null)
+            return new XSpecResult(absoluteXspecPath, XSpecStage.Skipped, null, null, [], skipReason);
+
         // ---- Stage 1: Compile ----
         string generatedStylesheet;
         try
@@ -151,6 +155,51 @@ public static class XSpecRunner
         await runTransformer.LoadStylesheetAsync(generatedStylesheet, xspecUri).ConfigureAwait(false);
         runTransformer.SetInitialTemplate("main", XSpecNs);
         return await runTransformer.TransformAsync((string?)null, ct).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// Decides whether a suite is one this runner can meaningfully attempt, returning the reason
+    /// it cannot when it is not, and <c>null</c> when it can.
+    /// </summary>
+    /// <remarks>
+    /// Mirrors the dispatch in XSpec's own <c>bin/xspec.sh</c>, including its precedence:
+    /// <c>x:description/@schematron</c> marks a Schematron suite (checked FIRST — such a suite
+    /// is preprocessed into a stylesheet, and several also carry a <c>@stylesheet</c> that would
+    /// otherwise misclassify them), <c>@query</c> marks an XQuery suite (which likewise may carry
+    /// a decoy <c>@stylesheet</c>, e.g. test/do-nothing_query.xspec), and only what is left is an
+    /// XSLT suite. A suite this runner cannot attempt is reported as
+    /// <see cref="XSpecStage.Skipped"/> with a written reason rather than being silently dropped
+    /// or, worse, counted as a compile failure against the XSLT engine — it is neither.
+    /// </remarks>
+    internal static string? ClassifySkip(string xspecXml)
+    {
+        XElement? root;
+        try
+        {
+            root = XDocument.Parse(xspecXml).Root;
+        }
+        catch (System.Xml.XmlException)
+        {
+            // Not well-formed: not a skip. Let the compile stage report it as the failure it is,
+            // with the engine's own diagnostic, rather than inventing a reason here.
+            return null;
+        }
+
+        if (root is null)
+            return null;
+
+        if (root.Attribute("schematron") != null)
+        {
+            return "Schematron suite (x:description/@schematron): needs XSpec's vendored " +
+                   "schxslt2 + XQS pipeline, which this runner does not carry.";
+        }
+
+        if (root.Attribute("query") != null)
+        {
+            return "XQuery suite (x:description/@query): this runner drives the XSLT engine only.";
+        }
+
+        return null;
     }
 
     /// <summary>

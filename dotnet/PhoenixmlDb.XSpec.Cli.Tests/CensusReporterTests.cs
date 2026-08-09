@@ -84,4 +84,26 @@ public class CensusReporterTests
         Assert.Contains("Total suites: 3", md);
         Assert.Contains("1 skipped", md);
     }
+
+    [Fact]
+    public void UncodedFailuresAreBucketedByMessageNotLumpedTogether()
+    {
+        // Not every engine failure carries a code. Filing them all under one heading would
+        // make one shared engine bug indistinguishable from many unrelated ones — which is
+        // the single thing the pick-list exists to tell apart.
+        var results = new[]
+        {
+            new XSpecResult("a.xspec", XSpecStage.Compile, null, "startIndex cannot be larger than length of string.", []),
+            new XSpecResult("b.xspec", XSpecStage.Compile, null, "startIndex cannot be larger than length of string.", []),
+            new XSpecResult("c.xspec", XSpecStage.Compile, null, "Object reference not set to an instance of an object.", []),
+        };
+
+        var md = CensusReporter.Render(results);
+
+        var shared = md.IndexOf("### startIndex cannot be larger", StringComparison.Ordinal);
+        var other = md.IndexOf("### Object reference not set", StringComparison.Ordinal);
+        Assert.True(shared >= 0 && other >= 0, "distinct uncoded causes must get distinct headings");
+        Assert.True(shared < other, "the more frequent cause must rank first");
+        Assert.Contains("(2 suites)", md, StringComparison.Ordinal);
+    }
 }

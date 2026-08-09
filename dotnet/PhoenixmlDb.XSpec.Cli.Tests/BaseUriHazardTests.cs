@@ -77,13 +77,19 @@ public class BaseUriHazardTests
     /// </summary>
     /// <remarks>
     /// <para>
-    /// The real compiler cannot be driven to <see cref="XSpecStage.Complete"/> right now: every
-    /// input, with or without an <c>x:import</c>, hits the same unrelated XTDE0930 namespace
-    /// defect inside <c>combine.xsl</c> before compilation finishes (see task-3-report.md).
-    /// So this test cannot assert "the suite compiled" — instead it asserts the fixture fails
-    /// with the exact <b>same</b> error as an import-free baseline (XTDE0930), which only
-    /// happens if the imported scenario was actually fetched and merged in; an unresolved
-    /// import fails differently and earlier.
+    /// The real compiler still cannot be driven to <see cref="XSpecStage.Complete"/>: every
+    /// input, with or without an <c>x:import</c>, hits the same engine defect before
+    /// compilation finishes. So this test cannot assert "the suite compiled" — instead it
+    /// asserts the fixture fails with the exact <b>same</b> error as an import-free baseline,
+    /// which only happens if the imported scenario was actually fetched and merged in; an
+    /// unresolved import fails differently and earlier.
+    /// </para>
+    /// <para>
+    /// The baseline is measured, not hard-coded. It used to be the literal string
+    /// <c>"XTDE0930"</c>, which stopped meaning anything the moment that defect was fixed in
+    /// PhoenixmlDb.XQuery: the test went red for a reason that had nothing to do with imports,
+    /// and would have gone red again at every subsequent blocker. Comparing against a live
+    /// import-free run keeps the assertion about the one thing it is for.
     /// </para>
     /// <para>
     /// Verified by hand before writing this assertion, and not re-asserted here (a negative
@@ -91,23 +97,28 @@ public class BaseUriHazardTests
     /// fixture to stay meaningful over time): pointing <c>x:import/@href</c> at a nonexistent
     /// file produces <c>FODC0005: Cannot retrieve document at URI '...'</c> at the Compile
     /// stage instead — a distinctly different, import-specific failure. That confirms this
-    /// test's assertion (same code as the baseline) actually discriminates "import resolved"
+    /// test's assertion (same failure as the baseline) actually discriminates "import resolved"
     /// from "import failed", rather than passing regardless.
     /// </para>
     /// <para>
-    /// Once the XTDE0930 defect is fixed upstream, this fixture should be re-run and this test
-    /// strengthened to assert <see cref="XSpecStage.Complete"/> with the imported scenario's
-    /// test actually present in <see cref="XSpecResult.Tests"/> — that is the real proof this
-    /// stand-in falls short of.
+    /// Once the compiler reaches <see cref="XSpecStage.Complete"/>, this test should be
+    /// strengthened to assert that stage with the imported scenario's test actually present in
+    /// <see cref="XSpecResult.Tests"/> — that is the real proof this stand-in falls short of.
     /// </para>
     /// </remarks>
     [Fact]
     public async Task Stage1Import_IsFetchedAndMerged_NotBlockedByAnImportResolutionFailure()
     {
+        var baseline = await XSpecRunner.RunAsync(
+            Path.Combine(Fixtures.Dir, "trivial-pass.xspec"), CancellationToken.None);
         var result = await XSpecRunner.RunAsync(
             Path.Combine(Fixtures.Dir, "import-hazard", "main.xspec"), CancellationToken.None);
 
-        Assert.Equal(XSpecStage.Compile, result.Stage);
-        Assert.Equal("XTDE0930", result.ErrorCode);
+        Assert.Equal(baseline.Stage, result.Stage);
+        Assert.Equal(baseline.ErrorCode, result.ErrorCode);
+        Assert.Equal(baseline.ErrorMessage, result.ErrorMessage);
+
+        // The failure that would mean the import was NOT resolved.
+        Assert.DoesNotContain("FODC0005", result.ErrorMessage ?? "", StringComparison.Ordinal);
     }
 }

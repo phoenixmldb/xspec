@@ -69,7 +69,7 @@ public static class CensusReporter
 
         var failing = results.Where(r => r.Stage is XSpecStage.Compile or XSpecStage.Run or XSpecStage.Assess);
         var groups = failing
-            .GroupBy(r => r.ErrorCode ?? "(no error code)")
+            .GroupBy(GroupKey)
             .OrderByDescending(g => g.Count())
             .ThenBy(g => g.Key, StringComparer.Ordinal);
 
@@ -91,6 +91,32 @@ public static class CensusReporter
             sb.AppendLine("No suites failed to complete.");
             sb.AppendLine();
         }
+    }
+
+    /// <summary>
+    /// The bucket a failing suite is counted under. A spec error code when the engine gave one;
+    /// otherwise the leading words of its message.
+    /// </summary>
+    /// <remarks>
+    /// Not every engine failure carries a code — a CLR exception escaping the engine (an
+    /// <c>ArgumentOutOfRangeException</c> from a buffer bookkeeping slip, say) has none, and the
+    /// pick-list exists to make the single most common cause obvious. Filing every such failure
+    /// under one "(no error code)" heading hides exactly that: one shared engine bug and fifty
+    /// unrelated ones look identical. Bucketing by the message's leading words keeps distinct
+    /// causes distinct, and the truncation keeps per-suite detail (paths, names, indexes) from
+    /// splitting one cause across many buckets.
+    /// </remarks>
+    private static string GroupKey(XSpecResult result)
+    {
+        if (result.ErrorCode != null)
+            return result.ErrorCode;
+
+        var message = result.ErrorMessage;
+        if (string.IsNullOrWhiteSpace(message))
+            return "(no error code, no message)";
+
+        var firstLine = message.Split('\n')[0].Trim();
+        return firstLine.Length <= 80 ? firstLine : firstLine[..80] + "…";
     }
 
     private static void AppendSkips(StringBuilder sb, IReadOnlyList<XSpecResult> results)
