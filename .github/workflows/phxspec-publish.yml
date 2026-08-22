@@ -1,0 +1,97 @@
+name: phxspec
+
+# Publishes PhoenixmlDb.XSpec.Cli — the `phxspec` global tool — to nuget.org.
+#
+# This repository is a FORK of xspec/xspec. Its other workflows (maven-deploy, lint, test)
+# belong to upstream and are left alone; this one is ours and touches only dotnet/.
+#
+# Tag with phxspec-v* rather than v*, because v* tags in a fork of XSpec would collide with
+# upstream's own release tags and with the engine repos' release train.
+
+on:
+  push:
+    tags: ["phxspec-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'preview'
+
+      # The tool embeds the XSpec stylesheets from the sibling src/ tree at pack time, so a
+      # version mismatch between tag and csproj would ship a differently-numbered tool than
+      # the tag claims. Fail loudly instead.
+      - name: Guard tag against csproj version
+        if: startsWith(github.ref, 'refs/tags/phxspec-v')
+        run: |
+          CSPROJ_VERSION=$(grep -oP '(?<=<Version>)[^<]+' dotnet/PhoenixmlDb.XSpec.Cli/PhoenixmlDb.XSpec.Cli.csproj | head -1)
+          TAG_VERSION="${GITHUB_REF_NAME#phxspec-v}"
+          if [ "$CSPROJ_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME implies $TAG_VERSION but the csproj says $CSPROJ_VERSION"
+            exit 1
+          fi
+          echo "Publishing phxspec $CSPROJ_VERSION"
+
+      - name: Build
+        run: dotnet build dotnet/PhoenixmlDb.XSpec.Cli -c Release
+
+      # Smoke test before publishing. What is being checked is that the TOOL works — that it
+      # can compile a suite, run it, and read back a report. Whether the engine passes that
+      # suite's assertions is a different question and must NOT gate shipping the tool:
+      # phxspec exits 1 for "ran, had failing tests", which is a normal and useful outcome.
+      # Only exit 2 — could not compile, could not run, could not read the report — means the
+      # tool itself is broken.
+      - name: Smoke test
+        run: |
+          set +e
+          dotnet run --project dotnet/PhoenixmlDb.XSpec.Cli --no-build -- test/trim.xspec
+          rc=$?
+          set -e
+          echo "phxspec exit=$rc (0 = all passed, 1 = tests failed, 2 = tool failure)"
+          if [ "$rc" -ge 2 ]; then
+            echo "::error::phxspec could not compile or run a suite — not shippable"
+            exit 1
+          fi
+
+      - name: Pack
+        run: dotnet pack dotnet/PhoenixmlDb.XSpec.Cli -c Release --no-build -o ./artifacts
+
+      - name: Login to NuGet via trusted publisher
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: endpointsystems
+
+      - name: Push
+        if: startsWith(github.ref, 'refs/tags/phxspec-v')
+        env:
+          NUGET_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+        run: |
+          for pkg in ./artifacts/*.nupkg; do
+            dotnet nuget push "$pkg" --api-key "$NUGET_KEY" \
+              --source https://api.nuget.org/v3/index.json --skip-duplicate
+          done
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phxspec-nupkg
+          path: ./artifacts/*.nupkg
+          if-no-files-found: warn
