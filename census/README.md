@@ -34,6 +34,7 @@ blockers were cleared and more suites now reach it. Stage counts are the real me
 | 07 | + node atomization for atomic return type | 99 | 63 | 0 | XTSE0010 62, FONS0004 60, XTDE1260 27 |
 | 08 | + attribute-stack restore, result-document empty seq | 99 | 39 | **24** | FONS0004 60, XTDE1260 27, saxon-version 12 |
 | 09 | + typed-template attribute copy, accumulator untypedAtomic | 6 | 104 | **52** | saxon-config 39, XPTY0020 21, XPDY0002 5 |
+| 10 | + one global content-binding path (was two) | 6 | 96 | **60** | saxon-config 47, XPDY0002 5, XPST0008 5 |
 
 Everything through 07 shipped as **PhoenixmlDb.Xslt 1.6.4** and **PhoenixmlDb.XQuery 1.6.2**.
 08 is unreleased.
@@ -138,3 +139,25 @@ Remaining, largest first:
 
 Measured against the engine at phoenixmldb-xslt `945c686` via a temporary ProjectReference,
 not against published 1.6.7 — those fixes are unreleased.
+
+### 10 — XPTY0020 closed out (2026-08-26)
+
+**XPTY0020 21 -> 0. Complete 52 -> 60.**
+
+The engine had two implementations of "bind a global from a content sequence constructor".
+The eager, dependency-ordered pass honoured `as`; the lazy on-demand pass stored the
+serialized content as a raw xs:string and ignored `as`. Which pass ran depended on whether
+the dependency analysis spotted the reference — and it does not recognise EQName
+(`$Q{uri}local`) references, which XSpec generates throughout. So a variable's TYPE depended
+on how another expression spelled its name.
+
+The eager path already carried a fix for this exact error, from Martin Honnen's DocBook
+report; its comment names XPTY0020. It had been applied to one of the two paths. Fixed in
+phoenixmldb-xslt `4f5384c` by extracting the shared method.
+
+`saxon-config` grew 39 -> 47 because suites now REACH it — the README's own caveat, visible
+in one step. It remains out of scope: those suites pass a Saxon configuration file.
+
+Remaining, largest first: saxon-config 47 (out of scope), XPDY0002 5, XPST0008 5, XTDE3052 5,
+XPDY0050 4, XTDE0555 4. Against the ~123 realistically reachable suites (284 - 122 skipped -
+47 saxon-config + overlap), 60 Complete is roughly half.
