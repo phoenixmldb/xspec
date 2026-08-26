@@ -1,0 +1,1987 @@
+[fn:trace] label: 
+[fn:trace] value-1
+[fn:trace] value-3
+# XSpec Census
+
+## Summary
+
+Total suites: 284
+
+| Stage reached | Suites |
+|---|---|
+| Compile | 6 |
+| Run | 104 |
+| Assess | 0 |
+| Complete | 52 |
+| Skipped | 122 |
+
+Of the 52 suites that ran to completion: 201 tests passed, 159 failed, 0 pending, out of 360 total. This excludes 122 skipped and 110 suites that did not reach completion — see below for both.
+
+## Pick-list (by error code)
+
+### Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxo… (39 suites)
+
+- `/repos/phoenixml/xspec/test/external_as.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_as_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_catch_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_context-param.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_default-mode-included-runas.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_default-mode-parent.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_global-context_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_global-override.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_helper.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_issue-1564.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_issue-1564_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_multiple-context-items.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_multiple-context-items_function.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_nested-context.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_nested-function-call.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_nested-template-call.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_no-prefix_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_non-node-context.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_param-position.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_pending-scenario-param-inherited-by-focus.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_pending-scenario-shared-param-inherited-by-focus.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_scenario-param-static-use-when.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_schut-to-xspec-for-xqs.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_template-context.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_transform.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_tunnel-param.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_tutorial_global-context-item_original.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_tutorial_under-the-hood_compilation-params-scope.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_tutorial_under-the-hood_compilation-sut_template.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_undeclare-ns_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_unfocused-param_inherited-by-focus.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_unfocused-shared-param_inherited-by-focus.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xml-base_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xsl-result-document_has-href.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xsl-result-document_no-href.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xslt-package_arith.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xslt-package_arith_private.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xslt-package_filter.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xslt4.xspec` (stage: Run)
+
+### XPTY0020 (21 suites)
+
+- `/repos/phoenixml/xspec/test/avt-ws_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/avt_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_avt-ws_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_avt_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_node-selection_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_prefix-conflict_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_tvt-ws_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_tvt_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_use-uqname_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_ws-only-text_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/node-selection_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/prefix-conflict_local_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/prefix-conflict_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/prefix_parent-vs-import_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/select-node.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/tvt-ws_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/tvt_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/undeclare-ns_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/use-uqname_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/ws-only-text_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/xmlns-imported_stylesheet.xspec` (stage: Run)
+
+### XPDY0002 (5 suites)
+
+- `/repos/phoenixml/xspec/test/compile-xslt-tests.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/generate-pipeline.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/param-position-implicit-explicit.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/param-position-implicit-explicit_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/transform-options.xspec` (stage: Run)
+
+### XTDE3052 (5 suites)
+
+- `/repos/phoenixml/xspec/test/external_xslt-package_arith_use-1.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xslt-package_arith_use-2.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xslt-package_filter_use.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_xslt-package_filter_use_static-param.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/helper_xslt-package.xspec` (stage: Run)
+
+### XTDE0555: No matching template found for node in mode with on-no-match='fail' (4 suites)
+
+- `/repos/phoenixml/xspec/test/generate-step3-wrapper_custom.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/generate-step3-wrapper_default.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/schut-to-xspec-compat.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/schut-to-xspec.xspec` (stage: Run)
+
+### FODC0002 (3 suites)
+
+- `/repos/phoenixml/xspec/test/generate-xproc-imports.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/schut-to-xslt.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/uri-utils.xspec` (stage: Run)
+
+### XPDY0050 (3 suites)
+
+- `/repos/phoenixml/xspec/test/catch_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/generate-test-case-step-catch.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/generate-test-case-step.xspec` (stage: Run)
+
+### XPST0003: mismatched input '<EOF>' expecting {'for', 'let', 'where', 'order', 'b… (3 suites)
+
+- `/repos/phoenixml/xspec/test/external_scenario-param.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_unfocused-param_not-inherited-by-focus.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/external_unfocused-shared-param_not-inherited-by-focus.xspec` (stage: Run)
+
+### XPST0008 (3 suites)
+
+- `/repos/phoenixml/xspec/test/uqname-utils.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/variable-like_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/variable_stylesheet.xspec` (stage: Run)
+
+### XTTE0570 (3 suites)
+
+- `/repos/phoenixml/xspec/test/report-sequence_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/selection-from-doc-xproc.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/test-utils.xspec` (stage: Run)
+
+### FONS0004 (2 suites)
+
+- `/repos/phoenixml/xspec/test/threads_description_stylesheet.xspec` (stage: Compile)
+- `/repos/phoenixml/xspec/test/threads_scenario_stylesheet.xspec` (stage: Compile)
+
+### XPST0003: token recognition error at: '&' (2 suites)
+
+- `/repos/phoenixml/xspec/test/external_x-context.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/x-context.xspec` (stage: Run)
+
+### XPTY0004 (2 suites)
+
+- `/repos/phoenixml/xspec/test/wrap_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/xspec-name.xspec` (stage: Run)
+
+### XQuery parse failed with 2 errors: XPST0003: token recognition error at: '&' (2 suites)
+
+- `/repos/phoenixml/xspec/test/external_issue-1020_stylesheet.xspec` (stage: Run)
+- `/repos/phoenixml/xspec/test/issue-1020_stylesheet.xspec` (stage: Run)
+
+### XTDE0430 (2 suites)
+
+- `/repos/phoenixml/xspec/test/external_coverage-contents-table.xspec` (stage: Compile)
+- `/repos/phoenixml/xspec/test/tutorial_namespaces_stylesheet.xspec` (stage: Compile)
+
+### XTTE0505 (2 suites)
+
+- `/repos/phoenixml/xspec/test/external_xmlns.xspec` (stage: Compile)
+- `/repos/phoenixml/xspec/test/xmlns_stylesheet.xspec` (stage: Compile)
+
+### FORG0006 (1 suite)
+
+- `/repos/phoenixml/xspec/test/xslt4.xspec` (stage: Run)
+
+### FOTY0013 (1 suite)
+
+- `/repos/phoenixml/xspec/test/non-node-context.xspec` (stage: Run)
+
+### Transformation terminated: ERROR in x:expect ('Scenario for testing variable sax… (1 suite)
+
+- `/repos/phoenixml/xspec/test/version-utils.xspec` (stage: Run)
+
+### XPDY0002: Context item is absent (1 suite)
+
+- `/repos/phoenixml/xspec/test/issue-59_stylesheet.xspec` (stage: Run)
+
+### XPST0017 (1 suite)
+
+- `/repos/phoenixml/xspec/test/report-sequence_stylesheet_schema-aware.xspec` (stage: Run)
+
+### XTDE0540 (1 suite)
+
+- `/repos/phoenixml/xspec/test/tutorial_helper_ws-only-text_stylesheet.xspec` (stage: Run)
+
+### XTSE0150 (1 suite)
+
+- `/repos/phoenixml/xspec/test/issue-746.xspec` (stage: Run)
+
+### XTSE0165 (1 suite)
+
+- `/repos/phoenixml/xspec/test/issue-1135.xspec` (stage: Run)
+
+### XTTE0590 (1 suite)
+
+- `/repos/phoenixml/xspec/test/compile-xproc-tests.xspec` (stage: Run)
+
+## Skipped
+
+Every skipped suite, with the reason it was not run. A skip is not a pass and not counted in the totals above.
+
+- `/repos/phoenixml/xspec/test/as.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/atomic-value-eq.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/avt-ws.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/avt-ws_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/avt.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/avt_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/catch.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/catch_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/common-utils.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/compiler-saxon-config_absolute.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/compiler-saxon-config_relative.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/deep-equal.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/external_global-context_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/external_scenario-param-phase_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/external_scenario-param_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/external_x-context_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/focus-ignored-by-like.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/function-in-variable.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/global-override-query.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/helper.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/helper_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/issue-1020.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-1564.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-1618.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/issue-308.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-396.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/issue-412.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-438.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-440.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-441.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-453.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-453_local.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-547.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/issue-59_query.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-59_use-case-2.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/issue-777.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/line-number_disabled.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/line-number_enabled.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/multiple-filtered-items.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/multiple-filtered-items_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/nested-function-call.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/no-prefix.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/no-prefix_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/no-scenario.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/node-selection.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/param-position.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/pending-ignored-by-like.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/pending-scenario-features-inherited-by-focus.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/pending-shared-variable-inherited-by-focus.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/pending-variable-inherited-by-focus.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/prefix-conflict.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/prefix-conflict_local_xquery.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/prefix_parent-vs-import_xquery.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/report-sequence-array-map.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/report-sequence.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/report-sequence_query_schema-aware.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/report-sequence_xsd-1-0.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/result-type-matches.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-01.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-012.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-014.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-015.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-016.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-017.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-018.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-019.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-020.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-021.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-022.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-024.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-025.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-026.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-027.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-default-from.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-global-xspec-uri.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-param-001.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-parent.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-severity-01.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-severity-02.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-text.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/schematron-tvt-in-schema.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/threads_description_ignored_no-scenario.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/threads_description_ignored_not-supported.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/threads_description_ignored_one-scenario.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/threads_description_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/threads_scenario_ignored.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/threads_scenario_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/transform.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tutorial_helper_ws-only-text_query.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tutorial_namespaces_query.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tutorial_under-the-hood_compilation-simple-suite.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tutorial_under-the-hood_compilation-sut_function.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tutorial_under-the-hood_compilation-variable.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tvt-ws.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tvt-ws_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/tvt.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/tvt_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/undeclare-ns.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/unfocused-function-call.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/unfocused-param.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/unfocused-shared-variable_inherited-by-focus.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/unfocused-shared-variable_not-inherited-by-focus.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/unfocused-variable_inherited-by-focus.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/unfocused-variable_not-inherited-by-focus.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/use-uqname.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/variable-like.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/variable-like_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/variable.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/variable_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/wrap.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/ws-only-text.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/x-context_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/xml-base.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/xmlns-imported_xquery.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/xmlns_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/xmlns_xquery.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/xquery-version_3.1.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/xquery-version_4.0.xspec`: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+- `/repos/phoenixml/xspec/test/xslt4-schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/xspec-sch.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/xspec-uri.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+- `/repos/phoenixml/xspec/test/xspec-uri_schematron.xspec`: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+## Per-suite detail
+
+### `/repos/phoenixml/xspec/test/as.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/as_stylesheet.xspec`
+
+- Stage: Complete
+- Passed: 9, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/atomic-value-eq.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/avt-ws.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/avt-ws_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/avt-ws_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/avt-ws_stylesheet.xspec:2:2318] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/avt.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/avt_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/avt_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/avt_stylesheet.xspec:2:2321] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/catch.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/catch_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/catch_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPDY0050
+- Error: Required cardinality of value treated as String+ is one or more, but the sequence is empty
+
+### `/repos/phoenixml/xspec/test/common-utils.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/compile-xproc-tests.xspec`
+
+- Stage: Run
+- Error code: XTTE0590
+- Error: XTTE0590: Parameter $call requires type Element but got String
+
+### `/repos/phoenixml/xspec/test/compile-xslt-tests.xspec`
+
+- Stage: Run
+- Error code: XPDY0002
+- Error: Context item is absent
+
+### `/repos/phoenixml/xspec/test/compiler-eqname-utils.xspec`
+
+- Stage: Complete
+- Passed: 7, Failed: 11, Pending: 0
+  - FAIL: Scenario for testing function QName-expression-from-EQName-ignoring-default-ns / URIQualifiedName / With URI / Converted with apostrophe escaped
+  - FAIL: Scenario for testing function QName-expression-from-EQName-ignoring-default-ns / URIQualifiedName / Without URI / Converted without being affected by the default namespace
+  - FAIL: Scenario for testing function QName-expression-from-EQName-ignoring-default-ns / Lexical QName / With prefix / Converted
+  - FAIL: Scenario for testing function QName-expression-from-EQName-ignoring-default-ns / Lexical QName / Without prefix / With default namespace / Converted without using the default namespace
+  - FAIL: Scenario for testing function QName-expression-from-EQName-ignoring-default-ns / Lexical QName / Without prefix / Without default namespace / Converted
+  - FAIL: Scenario for testing function UQName-from-EQName-ignoring-default-ns / URIQualifiedName / With URI / Intact
+  - FAIL: Scenario for testing function UQName-from-EQName-ignoring-default-ns / URIQualifiedName / Without URI / Intact
+  - FAIL: Scenario for testing function UQName-from-EQName-ignoring-default-ns / Lexical QName / With prefix / Resolved with prefix
+  - FAIL: Scenario for testing function UQName-from-EQName-ignoring-default-ns / Lexical QName / Without prefix / With default namespace / Resolved without using the default namespace
+  - FAIL: Scenario for testing function UQName-from-EQName-ignoring-default-ns / Lexical QName / Without prefix / Without default namespace / Resolved as no prefix
+  - FAIL: Scenario for testing variable capture-NCName / Captured
+
+### `/repos/phoenixml/xspec/test/compiler-misc-utils.xspec`
+
+- Stage: Complete
+- Passed: 5, Failed: 5, Pending: 0
+  - FAIL: Scenario for testing function xslt-version / default
+  - FAIL: Scenario for testing function xslt-version / defined in self
+  - FAIL: Scenario for testing function xslt-version / defined in parent
+  - FAIL: Scenario for testing function xslt-version / defined in grandparent
+  - FAIL: Scenario for testing function xslt-version / override
+
+### `/repos/phoenixml/xspec/test/compiler-pending-utils.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 25, Pending: 0
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / Prior to any pending markup, accumulator is an empty sequence
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / Prior to start of Pending #1 scenario, accumulator is still an empty sequence
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / At start of Pending #1 scenario, accumulator has first pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / Prior to start of Pending #2 scenario, accumulator still has only first pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / At start of Pending #2 scenario, accumulator has second followed by first pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / Inside Pending #2 scenario, accumulator still has second followed by first pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / At end of Pending #2 scenario, accumulator has first pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenarios that use @pending and nest / At end of Pending #1 scenario, accumulator is an empty sequence
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[@label] / At start of x:pending[@label], accumulator has pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[@label] / At start of scenario inside x:pending[@label], accumulator still has pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[@label] / At end of scenario inside x:pending[@label], accumulator still has pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[@label] / At end of x:pending[@label], accumulator no longer has pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[x:label] / At start of x:pending[x:label], accumulator has pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[x:label] / At start of scenario inside x:pending[x:label], accumulator has pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[x:label] / At end of scenario inside x:pending[x:label], accumulator still has pending reason
+  - FAIL: Tests for 'stacked-explicit-pending' accumulator / Pending scenario that uses x:pending[x:label] / At end of x:pending[x:label], accumulator no longer has pending reason
+  - FAIL: Tests for x:reason-for-pending function / No focus or pending / Empty sequence
+  - FAIL: Tests for x:reason-for-pending function / @focus on ancestor scenario / Empty sequence, because ancestor's @focus overrides pending reason
+  - FAIL: Tests for x:reason-for-pending function / Parameter located in pending scenario and inherited by scenario with @focus / Empty sequence, because inheritance overrides pending reason
+  - FAIL: Tests for x:reason-for-pending function / Variable located in pending scenario and inherited by scenario with @focus / Empty sequence, because inheritance overrides pending reason
+  - FAIL: Tests for x:reason-for-pending function / @focus elsewhere makes a scenario pending (implicit reason) / Reason from first @focus
+  - FAIL: Tests for x:reason-for-pending function / @focus irrelevant for element outside scenarios / Empty sequence, because @focus does not make this context pending
+  - FAIL: Tests for x:reason-for-pending function / @focus and @pending both affect context,  / where pending scenario is before focused scenario / @pending reason is preferred
+  - FAIL: Tests for x:reason-for-pending function / @focus and @pending both affect context,  / where pending scenario is after focused scenario / @pending reason is preferred
+  - FAIL: Tests for x:reason-for-pending function / @focus and @pending both affect context,  / where child of scenario[@pending] is deeper than focused scenario / @pending reason is preferred
+
+### `/repos/phoenixml/xspec/test/compiler-saxon-config_absolute.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/compiler-saxon-config_relative.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/compiler-sequencetype-with-uqnames.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 12, Pending: 0
+  - FAIL: Lexical QName in @as attribute / as the entire @as value / Declaring namespace on the context element / enables correct conversion to UQName
+  - FAIL: Lexical QName in @as attribute / as the entire @as value / Declaring namespace on ancestor of context element / enables correct conversion to UQName
+  - FAIL: Lexical QName in @as attribute / as the entire @as value / When prefix is declared differently on ancestor of context element / conversion to UQName uses nearest binding
+  - FAIL: Lexical QName in @as attribute / in parentheses / as the only argument / is converted to UQName
+  - FAIL: Lexical QName in @as attribute / in parentheses / as first argument, with UQName following / is converted to UQName, and UQName is preserved
+  - FAIL: Lexical QName in @as attribute / in parentheses / as second argument, with UQName preceding / is converted to UQName, and UQName is preserved
+  - FAIL: Lexical QName in @as attribute / in parentheses / in both arguments / are both converted to UQName
+  - FAIL: Lexical QName in @as attribute / in parentheses / in both arguments, with line break, / are both converted to UQName, with same whitespace
+  - FAIL: Lexical QName in @as attribute / in parentheses / When URIs include characters that look like delimiters (parentheses, comma) / the analysis of lexical QNames and UQNames is still correct
+  - FAIL: Lexical QName in @as attribute / in parentheses / When prefix is implicitly known instead of explicitly declared / conversion to UQName uses implicit definition
+  - FAIL: Edge cases / @as value has no lexical QName / has no change (and xmlns:a is irrelevant because a:b is a URI here, not a lexical QName)
+  - FAIL: Edge cases / Element has no @as attribute / returns an empty sequence
+
+### `/repos/phoenixml/xspec/test/context-mode-ignored.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/context-param.xspec`
+
+- Stage: Complete
+- Passed: 5, Failed: 1, Pending: 0
+  - FAIL: When x:context has @href document containing x:param, / x:param in @href document does not work as a parameter. So... / Templates receive no parameter.
+
+### `/repos/phoenixml/xspec/test/declare-variable.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 1, Pending: 0
+  - FAIL: Scenario for testing function variable-UQName / With @name / URIQualifiedName with namespace and local name specified in @name
+
+### `/repos/phoenixml/xspec/test/deep-equal.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/default-mode-parent-runas-imported.xspec`
+
+- Stage: Complete
+- Passed: 3, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/external_as.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_as_stylesheet.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_avt-ws_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_avt-ws_stylesheet.xspec:2:2282] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<scenario-param-child xmlns:mirror="x-ur…")
+
+### `/repos/phoenixml/xspec/test/external_avt_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_avt_stylesheet.xspec:2:2281] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/external_catch_stylesheet.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_context-param.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_coverage-contents-table.xspec`
+
+- Stage: Compile
+- Error code: XTDE0430
+- Error: XTDE0430: Two namespace nodes with the same prefix '' have different namespace URIs ('' and 'http://www.w3.org/1999/xhtml')
+
+### `/repos/phoenixml/xspec/test/external_default-mode-included-runas.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_default-mode-parent.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_global-context_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/external_global-context_stylesheet.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_global-override.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_helper.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_issue-1020_stylesheet.xspec`
+
+- Stage: Run
+- Error: XQuery parse failed with 2 errors: XPST0003: token recognition error at: '&'
+
+### `/repos/phoenixml/xspec/test/external_issue-1564.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_issue-1564_stylesheet.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_multiple-context-items.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_multiple-context-items_function.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_nested-context.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_nested-function-call.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_nested-template-call.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_no-prefix_stylesheet.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_node-selection_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_node-selection_stylesheet.xspec:2:1945] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/external_non-node-context.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_param-position.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_pending-scenario-param-inherited-by-focus.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_pending-scenario-shared-param-inherited-by-focus.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_prefix-conflict_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_prefix-conflict_stylesheet.xspec:2:2184] An axis step (Child::element(x:global-param-child)) was used when the context item is not a node (got xs:string "<x:global-param-child xmlns:x="x-urn:tes…")
+
+### `/repos/phoenixml/xspec/test/external_scenario-param-phase_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/external_scenario-param-static-use-when.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_scenario-param.xspec`
+
+- Stage: Run
+- Error: XPST0003: mismatched input '<EOF>' expecting {'for', 'let', 'where', 'order', 'by', 'return', 'in', 'allowing', 'empty', 'at', 'stable', 'ascending', 'descending', 'greatest', 'least', 'collation', 'group', 'count', 'while', 'member', 'record', 'enum', 'tumbling', 'sliding', 'window', 'start', 'end', 'when', 'only', 'previous', 'next', 'current', 'if', 'then', 'else', 'some', 'every', 'satisfies', 'switch', 'case', KW_DEFAULT, 'typeswitch', 'try', 'catch', 'and', 'or', 'not', 'eq', 'ne', 'lt', 'le', 'gt', 'ge', 'is', 'div', 'idiv', 'mod', 'instance', 'of', 'treat', 'as', 'castable', 'cast', 'to', 'union', 'intersect', 'except', 'otherwise', 'insert', 'delete', 'replace', 'rename', 'copy', 'modify', 'into', 'with', 'nodes', 'value', 'before', 'after', 'first', 'last', 'contains', 'ftand', 'ftor', 'ftnot', 'phrase', 'any', 'all', 'word', 'words', 'distance', 'same', 'sentence', 'paragraph', 'entire', 'content', 'stemming', 'language', 'wildcards', 'sensitive', 'insensitive', 'diacritics', 'stop', 'thesaurus', 'using', 'no', 'item', 'node', 'element', 'attribute', 'text', 'comment', 'document-node', 'processing-instruction', 'schema-element', 'schema-attribute', 'namespace-node', 'empty-sequence', 'function', 'fn', 'child', 'descendant', 'self', 'descendant-or-self', 'following-sibling', 'following', 'parent', 'ancestor', 'preceding-sibling', 'preceding', 'ancestor-or-self', 'namespace', 'document', 'map', 'array', 'xquery', 'version', 'encoding', 'module', 'declare', 'variable', 'import', 'schema', 'external', 'option', 'construction', 'ordering', 'ordered', 'unordered', 'preserve', 'strip', 'boundary-space', 'copy-namespaces', 'no-preserve', 'inherit', 'no-inherit', 'base-uri', 'decimal-format', 'context', 'validate', 'strict', 'lax', 'type', URIQualifiedName, NCName}
+
+### `/repos/phoenixml/xspec/test/external_scenario-param_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/external_schut-to-xspec-for-xqs.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_template-context.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_transform.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_tunnel-param.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_tutorial_global-context-item_original.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_tutorial_under-the-hood_compilation-params-scope.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_tutorial_under-the-hood_compilation-sut_template.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_tvt-ws_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_tvt-ws_stylesheet.xspec:5:166] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/external_tvt_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_tvt_stylesheet.xspec:2:2754] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/external_undeclare-ns_stylesheet.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_unfocused-param_inherited-by-focus.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_unfocused-param_not-inherited-by-focus.xspec`
+
+- Stage: Run
+- Error: XPST0003: mismatched input '<EOF>' expecting {'for', 'let', 'where', 'order', 'by', 'return', 'in', 'allowing', 'empty', 'at', 'stable', 'ascending', 'descending', 'greatest', 'least', 'collation', 'group', 'count', 'while', 'member', 'record', 'enum', 'tumbling', 'sliding', 'window', 'start', 'end', 'when', 'only', 'previous', 'next', 'current', 'if', 'then', 'else', 'some', 'every', 'satisfies', 'switch', 'case', KW_DEFAULT, 'typeswitch', 'try', 'catch', 'and', 'or', 'not', 'eq', 'ne', 'lt', 'le', 'gt', 'ge', 'is', 'div', 'idiv', 'mod', 'instance', 'of', 'treat', 'as', 'castable', 'cast', 'to', 'union', 'intersect', 'except', 'otherwise', 'insert', 'delete', 'replace', 'rename', 'copy', 'modify', 'into', 'with', 'nodes', 'value', 'before', 'after', 'first', 'last', 'contains', 'ftand', 'ftor', 'ftnot', 'phrase', 'any', 'all', 'word', 'words', 'distance', 'same', 'sentence', 'paragraph', 'entire', 'content', 'stemming', 'language', 'wildcards', 'sensitive', 'insensitive', 'diacritics', 'stop', 'thesaurus', 'using', 'no', 'item', 'node', 'element', 'attribute', 'text', 'comment', 'document-node', 'processing-instruction', 'schema-element', 'schema-attribute', 'namespace-node', 'empty-sequence', 'function', 'fn', 'child', 'descendant', 'self', 'descendant-or-self', 'following-sibling', 'following', 'parent', 'ancestor', 'preceding-sibling', 'preceding', 'ancestor-or-self', 'namespace', 'document', 'map', 'array', 'xquery', 'version', 'encoding', 'module', 'declare', 'variable', 'import', 'schema', 'external', 'option', 'construction', 'ordering', 'ordered', 'unordered', 'preserve', 'strip', 'boundary-space', 'copy-namespaces', 'no-preserve', 'inherit', 'no-inherit', 'base-uri', 'decimal-format', 'context', 'validate', 'strict', 'lax', 'type', URIQualifiedName, NCName}
+
+### `/repos/phoenixml/xspec/test/external_unfocused-shared-param_inherited-by-focus.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_unfocused-shared-param_not-inherited-by-focus.xspec`
+
+- Stage: Run
+- Error: XPST0003: mismatched input '<EOF>' expecting {'for', 'let', 'where', 'order', 'by', 'return', 'in', 'allowing', 'empty', 'at', 'stable', 'ascending', 'descending', 'greatest', 'least', 'collation', 'group', 'count', 'while', 'member', 'record', 'enum', 'tumbling', 'sliding', 'window', 'start', 'end', 'when', 'only', 'previous', 'next', 'current', 'if', 'then', 'else', 'some', 'every', 'satisfies', 'switch', 'case', KW_DEFAULT, 'typeswitch', 'try', 'catch', 'and', 'or', 'not', 'eq', 'ne', 'lt', 'le', 'gt', 'ge', 'is', 'div', 'idiv', 'mod', 'instance', 'of', 'treat', 'as', 'castable', 'cast', 'to', 'union', 'intersect', 'except', 'otherwise', 'insert', 'delete', 'replace', 'rename', 'copy', 'modify', 'into', 'with', 'nodes', 'value', 'before', 'after', 'first', 'last', 'contains', 'ftand', 'ftor', 'ftnot', 'phrase', 'any', 'all', 'word', 'words', 'distance', 'same', 'sentence', 'paragraph', 'entire', 'content', 'stemming', 'language', 'wildcards', 'sensitive', 'insensitive', 'diacritics', 'stop', 'thesaurus', 'using', 'no', 'item', 'node', 'element', 'attribute', 'text', 'comment', 'document-node', 'processing-instruction', 'schema-element', 'schema-attribute', 'namespace-node', 'empty-sequence', 'function', 'fn', 'child', 'descendant', 'self', 'descendant-or-self', 'following-sibling', 'following', 'parent', 'ancestor', 'preceding-sibling', 'preceding', 'ancestor-or-self', 'namespace', 'document', 'map', 'array', 'xquery', 'version', 'encoding', 'module', 'declare', 'variable', 'import', 'schema', 'external', 'option', 'construction', 'ordering', 'ordered', 'unordered', 'preserve', 'strip', 'boundary-space', 'copy-namespaces', 'no-preserve', 'inherit', 'no-inherit', 'base-uri', 'decimal-format', 'context', 'validate', 'strict', 'lax', 'type', URIQualifiedName, NCName}
+
+### `/repos/phoenixml/xspec/test/external_use-uqname_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_use-uqname_stylesheet.xspec:5:3] An axis step (Child::element(global-param-child)) was used when the context item is not a node (got xs:string "<use-uqname:global-param-child xmlns:use…")
+
+### `/repos/phoenixml/xspec/test/external_ws-only-text_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/external_ws-only-text_stylesheet.xspec:2:2121] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<span xmlns:mirror="x-urn:test:mirror" x…")
+
+### `/repos/phoenixml/xspec/test/external_x-context.xspec`
+
+- Stage: Run
+- Error: XPST0003: token recognition error at: '&'
+
+### `/repos/phoenixml/xspec/test/external_x-context_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/external_xml-base_stylesheet.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_xmlns.xspec`
+
+- Stage: Compile
+- Error code: XTTE0505
+- Error: XTTE0505: Template match="like" return value item of type String does not match declared type Element; value="<x:expect xmlns:_pxbase_="http://phoenixmldb/internal/base-uri" _pxbase_:base="f…"
+
+### `/repos/phoenixml/xspec/test/external_xsl-result-document_has-href.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_xsl-result-document_no-href.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_xslt-package_arith.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_xslt-package_arith_private.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_xslt-package_arith_use-1.xspec`
+
+- Stage: Run
+- Error code: XTDE3052
+- Error: XTDE3052: Package 'http://example.org/complex-arithmetic.xsl' not found
+
+### `/repos/phoenixml/xspec/test/external_xslt-package_arith_use-2.xspec`
+
+- Stage: Run
+- Error code: XTDE3052
+- Error: XTDE3052: Package 'http://example.org/complex-arithmetic.xsl' not found
+
+### `/repos/phoenixml/xspec/test/external_xslt-package_filter.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/external_xslt-package_filter_use.xspec`
+
+- Stage: Run
+- Error code: XTDE3052
+- Error: XTDE3052: Package 'http://example.org/filter.xsl' not found
+
+### `/repos/phoenixml/xspec/test/external_xslt-package_filter_use_static-param.xspec`
+
+- Stage: Run
+- Error code: XTDE3052
+- Error: XTDE3052: Package 'http://example.org/filter.xsl' not found
+
+### `/repos/phoenixml/xspec/test/external_xslt4.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR: $Q{http://www.jenitennison.com/xslt/xspec}saxon-config does not appear to be a Saxon configuration
+
+### `/repos/phoenixml/xspec/test/focus-ignored-by-like.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/format-utils.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 10, Pending: 0
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / Windows / Drive / Win32 (file:///C:/) / Upper-case drive letter / Discard everything before drive letter
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / Windows / Drive / Win32 (file:///C:/) / Lower-case drive letter / Discard everything before drive letter
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / Windows / Drive / Java (file:/C:/) / Upper-case drive letter / Discard everything before drive letter
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / Windows / Drive / Java (file:/C:/) / Lower-case drive letter / Discard everything before drive letter
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / Windows / UNC / Win32 (file://host/) / Discard file:
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / Windows / UNC / Java (file:////host/) / Discard file://
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / *nix / One slash / Discard file:
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / *nix / Two slashes / Discard file:
+  - FAIL: Scenario for testing function format-uri / file: (%20 should be unescaped) / *nix / Three slashes / Discard file://
+  - FAIL: Scenario for testing function format-uri / Non file: (Everything including %20 should be intact) / Intact
+
+### `/repos/phoenixml/xspec/test/function-in-variable.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/generate-node-selector.xspec`
+
+- Stage: Complete
+- Passed: 3, Failed: 1, Pending: 0
+  - FAIL: Without namespace nodes / xsl:sequence has no extra namespaces
+
+### `/repos/phoenixml/xspec/test/generate-pipeline.xspec`
+
+- Stage: Run
+- Error code: XPDY0002
+- Error: Context item is absent
+
+### `/repos/phoenixml/xspec/test/generate-step3-wrapper_custom.xspec`
+
+- Stage: Run
+- Error: XTDE0555: No matching template found for node in mode with on-no-match='fail'
+
+### `/repos/phoenixml/xspec/test/generate-step3-wrapper_default.xspec`
+
+- Stage: Run
+- Error: XTDE0555: No matching template found for node in mode with on-no-match='fail'
+
+### `/repos/phoenixml/xspec/test/generate-test-case-step-catch.xspec`
+
+- Stage: Run
+- Error code: XPDY0050
+- Error: The context item for '/' is not in a tree rooted at a document node
+
+### `/repos/phoenixml/xspec/test/generate-test-case-step.xspec`
+
+- Stage: Run
+- Error code: XPDY0050
+- Error: The context item for '/' is not in a tree rooted at a document node
+
+### `/repos/phoenixml/xspec/test/generate-xproc-imports.xspec`
+
+- Stage: Run
+- Error code: FODC0002
+- Error: No document could be retrieved for URI 'catalog-01:/helper.xpl'
+
+### `/repos/phoenixml/xspec/test/get-step-declaration.xspec`
+
+- Stage: Complete
+- Passed: 12, Failed: 4, Pending: 0
+  - FAIL: Test x:UQName-of-step function / on step declaration / with colon in step type / returns URI-qualified name
+  - FAIL: Test x:UQName-of-step function / on step declaration / without colon in step type / returns string value of @type
+  - FAIL: Test x:UQName-of-step function / on XSpec call / with colon in step type / returns URI-qualified name
+  - FAIL: Test x:UQName-of-step function / on XSpec call / without colon in step type / returns string value of @step
+
+### `/repos/phoenixml/xspec/test/global-override-query.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/global-override.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 13, Pending: 0
+  - FAIL: With global x:param and / global xsl:param, / x:param should always override xsl:param
+  - FAIL: With global x:param and / global xsl:variable, / x:param should override xsl:variable unless run-as=external
+  - FAIL: With global x:param and / no corresponding xsl:param, / the declared param takes effect only in XSpec
+  - FAIL: With empty global x:param and / global xsl:param, / x:param should always override xsl:param
+  - FAIL: With empty global x:param and / global xsl:variable, / x:param should override xsl:variable unless run-as=external
+  - FAIL: With global x:variable and / global xsl:param, / run-as=import allows x:variable to override xsl:param, although not an
+					official recommended usage of x:variable. run-as=external should never allow
+					it.
+  - FAIL: With global x:variable and / global xsl:variable, / run-as=import allows x:variable to override xsl:variable, although not an
+					official recommended usage of x:variable. run-as=external should never allow
+					it.
+  - FAIL: With empty global x:variable and / global xsl:param, / run-as=import allows x:variable to override xsl:param, although not an
+					official recommended usage of x:variable. run-as=external should never allow
+					it.
+  - FAIL: With empty global x:variable and / global xsl:variable, / run-as=import allows x:variable to override xsl:variable, although not an
+					official recommended usage of x:variable. run-as=external should never allow
+					it.
+  - FAIL: With scenario-level x:variable and / global xsl:param, / scenario-level x:variable should never override xsl:param
+  - FAIL: With scenario-level x:variable and / global xsl:variable, / scenario-level x:variable should never override xsl:variable
+  - FAIL: With empty scenario-level x:variable and / global xsl:param, / scenario-level x:variable should never override xsl:param
+  - FAIL: With empty scenario-level x:variable and / global xsl:variable, / scenario-level x:variable should never override xsl:variable
+
+### `/repos/phoenixml/xspec/test/helper.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/helper_override.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/helper_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/helper_xslt-package.xspec`
+
+- Stage: Run
+- Error code: XTDE3052
+- Error: XTDE3052: Package 'http://example.org/complex-arithmetic.xsl' not found
+
+### `/repos/phoenixml/xspec/test/issue-1020.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-1020_stylesheet.xspec`
+
+- Stage: Run
+- Error: XQuery parse failed with 2 errors: XPST0003: token recognition error at: '&'
+
+### `/repos/phoenixml/xspec/test/issue-1029.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 18, Pending: 0
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in xsl:function / [@as=xs:integer] / should catch err:XTMM9000
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in xsl:function / [@as=xs:integer] / should catch its message body
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in xsl:function / [@as=xs:integer] / verify xsl:function
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in xsl:function / [empty(@as)] / should catch err:XTMM9000
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in xsl:function / [empty(@as)] / should catch its message body
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in xsl:function / [empty(@as)] / verify xsl:function
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in calling xsl:template / [@as=xs:integer] / should catch err:XTMM9000
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in calling xsl:template / [@as=xs:integer] / should catch its message body
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in calling xsl:template / [@as=xs:integer] / verify xsl:template
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in calling xsl:template / [empty(@as)] / should catch err:XTMM9000
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in calling xsl:template / [empty(@as)] / should catch its message body
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in calling xsl:template / [empty(@as)] / verify xsl:template
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in matching xsl:template / [@as=xs:integer] / should catch err:XTMM9000
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in matching xsl:template / [@as=xs:integer] / should catch its message body
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in matching xsl:template / [@as=xs:integer] / verify xsl:template
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in matching xsl:template / [empty(@as)] / should catch err:XTMM9000
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in matching xsl:template / [empty(@as)] / should catch its message body
+  - FAIL: catch=yes with xsl:message[@terminate=yes] in matching xsl:template / [empty(@as)] / verify xsl:template
+
+### `/repos/phoenixml/xspec/test/issue-1135.xspec`
+
+- Stage: Run
+- Error code: XTSE0165
+- Error: XTSE0165: Cannot find stylesheet module 'demo.xsl'
+
+### `/repos/phoenixml/xspec/test/issue-1564.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-1564_stylesheet.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 3, Pending: 0
+  - FAIL: x:call/x:param/@name / should not affect global parameter
+  - FAIL: x:context/x:param/@name / should not affect global parameter
+  - FAIL: x:call[@template]/x:param/@name / should not affect global parameter
+
+### `/repos/phoenixml/xspec/test/issue-1618.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/issue-215.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-23_1.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-26.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 1, Pending: 0
+  - FAIL: When converting heading element / With a child
+
+### `/repos/phoenixml/xspec/test/issue-30.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-308.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-33.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-396.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/issue-412.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-438.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-440.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-441.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-453.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-453_local.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-46.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 1, Pending: 0
+  - FAIL: Scenario-1 / Expect-1
+
+### `/repos/phoenixml/xspec/test/issue-47.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 7, Pending: 0
+  - FAIL: Set context in *:foo / Inspect via $x:result / Attribute value consists of three tokens
+  - FAIL: Set context in *:foo / Inspect via $x:result / One of the tokens is 'Alpha'
+  - FAIL: Set context in *:foo / Inspect via a wrapper document node / One attribute exists
+  - FAIL: Set context in *:foo / Inspect via a wrapper document node / Attribute value consists of three tokens
+  - FAIL: Set context in *:foo / Inspect via a wrapper document node / One of the tokens is 'Alpha'
+  - FAIL: wrap:wrap-nodes / Type annotations are kept
+  - FAIL: wrap:wrap-nodes / Nodes are kept
+
+### `/repos/phoenixml/xspec/test/issue-538.xspec`
+
+- Stage: Complete
+- Passed: 5, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-547.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/issue-59_query.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-59_stylesheet.xspec`
+
+- Stage: Run
+- Error: XPDY0002: Context item is absent
+
+### `/repos/phoenixml/xspec/test/issue-59_use-case-1.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 1, Pending: 0
+  - FAIL: Use case from https://github.com/xspec/xspec/issues/59#issue-199577069
+
+### `/repos/phoenixml/xspec/test/issue-59_use-case-2.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-638.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-700.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 2, Pending: 0
+  - FAIL: Aborts with abbreviation with no expansion / err:code
+  - FAIL: Aborts with abbreviation with no expansion / err:value should contain xsl:message body
+
+### `/repos/phoenixml/xspec/test/issue-746.xspec`
+
+- Stage: Run
+- Error code: XTSE0150
+- Error: XTSE0150: A literal result element used as a simplified stylesheet module must have an xsl:version attribute
+
+### `/repos/phoenixml/xspec/test/issue-777.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/issue-777_stylesheet.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-826.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-987_child.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/issue-987_parent.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/line-number_disabled.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/line-number_enabled.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/multiple-context-items.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 4, Pending: 0
+  - FAIL: When x:context consists of multiple items / both node and atomic value / Calling a named template / should call the template once for each item in x:context
+  - FAIL: When x:context consists of multiple items / both node and atomic value / Applying templates / should apply templates to all the items in x:context
+  - FAIL: When x:context consists of multiple items / nodes / Calling a named template / should call the template once for each item in x:context
+  - FAIL: When x:context consists of multiple items / nodes / Applying templates / should apply templates to all the items in x:context
+
+### `/repos/phoenixml/xspec/test/multiple-filtered-items.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/multiple-filtered-items_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/namespace-vars.xspec`
+
+- Stage: Complete
+- Passed: 4, Failed: 1, Pending: 0
+  - FAIL: Scenario for testing variable xsl-namespace / xs:anyURI of 'xsl' namespace URI
+
+### `/repos/phoenixml/xspec/test/nested-context.xspec`
+
+- Stage: Complete
+- Passed: 3, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/nested-function-call.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/nested-template-call.xspec`
+
+- Stage: Complete
+- Passed: 6, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/no-prefix.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/no-prefix_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/no-prefix_stylesheet.xspec`
+
+- Stage: Complete
+- Passed: 3, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/no-scenario.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/node-selection.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/node-selection_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/node-selection_stylesheet.xspec:2:1994] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/non-node-context.xspec`
+
+- Stage: Run
+- Error code: FOTY0013
+- Error: [file:///repos/phoenixml/xspec/test/non-node-context.xspec:4] [file:///tmp/phxspec-src-0058d8d7dfc74814a8e571f0dc3e1f36/common/deep-equal.xsl:64] [file:///tmp/phxspec-src-0058d8d7dfc74814a8e571f0dc3e1f36/common/deep-equal.xsl:158] Atomization is not defined for maps
+  ↳ in expression (FunctionCallExpression): deep-equal($item1, $item2)
+  ↳ in expression (QuantifiedExpression): every $i in (1 to count($seq1)) satisfies deq:item-deep-equal($seq1[$i], $seq2[$i], $flags)
+  ↳ in expression (BinaryExpression): (not($result-type-mismatch) and deep-equal($expect-d3073dc3, $result, ""))
+
+### `/repos/phoenixml/xspec/test/param-position-implicit-explicit.xspec`
+
+- Stage: Run
+- Error code: XPDY0002
+- Error: Context item is absent
+
+### `/repos/phoenixml/xspec/test/param-position-implicit-explicit_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPDY0002
+- Error: Context item is absent
+
+### `/repos/phoenixml/xspec/test/param-position.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/pending-ignored-by-like.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/pending-scenario-features-inherited-by-focus.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/pending-shared-variable-inherited-by-focus.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/pending-variable-inherited-by-focus.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/prefix-conflict.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/prefix-conflict_local_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/prefix-conflict_local_stylesheet.xspec:2:2246] An axis step (Child::element(x:global-param-child)) was used when the context item is not a node (got xs:string "<x:global-param-child xmlns:x="x-urn:tes…")
+
+### `/repos/phoenixml/xspec/test/prefix-conflict_local_xquery.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/prefix-conflict_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/prefix-conflict_stylesheet.xspec:2:2242] An axis step (Child::element(x:global-param-child)) was used when the context item is not a node (got xs:string "<x:global-param-child xmlns:x="x-urn:tes…")
+
+### `/repos/phoenixml/xspec/test/prefix_parent-vs-import_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/prefix_parent-vs-import_stylesheet.xspec:2:3575] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<tv1:element xmlns:tv1="http://example.o…")
+
+### `/repos/phoenixml/xspec/test/prefix_parent-vs-import_xquery.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/report-sequence-array-map.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/report-sequence.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/report-sequence_query_schema-aware.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/report-sequence_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XTTE0570
+- Error: XTTE0570: Variable $local-name value does not match declared type String ExactlyOne
+
+### `/repos/phoenixml/xspec/test/report-sequence_stylesheet_hof.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 1, Pending: 0
+  - FAIL: Scenario for testing function function-type / Function (excluding map and array) / function
+
+### `/repos/phoenixml/xspec/test/report-sequence_stylesheet_schema-aware.xspec`
+
+- Stage: Run
+- Error code: XPST0017
+- Error: Function pictype not found
+
+### `/repos/phoenixml/xspec/test/report-sequence_xsd-1-0.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/result-type-matches.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-01.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-012.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-014.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-015.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-016.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-017.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-018.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-019.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-020.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-021.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-022.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-024.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-025.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-026.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-027.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-default-from.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-global-xspec-uri.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-param-001.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-parent.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-severity-01.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-severity-02.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-text.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schematron-tvt-in-schema.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/schut-to-xslt.xspec`
+
+- Stage: Run
+- Error code: FODC0002
+- Error: No document could be retrieved for URI 'catalog-01:/example.xml'
+
+### `/repos/phoenixml/xspec/test/schut-to-xspec-compat.xspec`
+
+- Stage: Run
+- Error: XTDE0555: No matching template found for node in mode with on-no-match='fail'
+
+### `/repos/phoenixml/xspec/test/schut-to-xspec.xspec`
+
+- Stage: Run
+- Error: XTDE0555: No matching template found for node in mode with on-no-match='fail'
+
+### `/repos/phoenixml/xspec/test/select-node.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/src/schematron/select-node.xsl:29:31] An axis step (Attribute::prefix) was used when the context item is not a node (got xs:string "")
+
+### `/repos/phoenixml/xspec/test/selection-from-doc-xproc.xspec`
+
+- Stage: Run
+- Error code: XTTE0570
+- Error: XTTE0570: Variable $wrap-selected-nodes value does not match declared type String ExactlyOne
+
+### `/repos/phoenixml/xspec/test/template-context.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/test-helper-documents.xspec`
+
+- Stage: Complete
+- Passed: 10, Failed: 15, Pending: 0
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When input is a sequence of 3 wrapper elements with any names / the result is a sequence of 3 document nodes.
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When input is a sequence of 3 wrapper elements with any names / The 1st contains the children of document-wrapper1.
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When input is a sequence of 3 wrapper elements with any names / The 3rd contains the children of local:document-wrapper3.
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When wrapper element has namespace declarations / the result uses the declarations.
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When wrapper element enables text value templates / the result reflects TVT evaluation
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When wrapper element disables text value templates / the result does not reflect TVT evaluation
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When wrapper element has xml:base attribute / the result does *not* reflect the revised base URI
+  - FAIL: Tests for thd:rewrap-as-doc-node function / When input is an empty sequence / the result is an empty sequence
+  - FAIL: Tests for thd:wrap-each function / When input is a sequence of 4 nodes / the result is a sequence of 4 document nodes
+  - FAIL: Tests for thd:wrap-each function / When input is a sequence of 4 nodes / respectively containing one element,
+  - FAIL: Tests for thd:wrap-each function / When input is a sequence of 4 nodes / one processing instruction,
+  - FAIL: Tests for thd:wrap-each function / When input is a sequence of text nodes / the result is a sequence of 2 document nodes
+  - FAIL: Tests for thd:wrap-each function / When input is a sequence containing a node and an atomic value / followed by the atomic value unchanged
+  - FAIL: Tests for thd:wrap-each function / When input is an empty sequence / the result is an empty sequence
+  - FAIL: Tests for thd:wrapped-child-nodes-or-empty-document-node function / When input is one document-wrapper element / the result is a document node containing the children of document-wrapper.
+
+### `/repos/phoenixml/xspec/test/test-utils.xspec`
+
+- Stage: Run
+- Error code: XTTE0570
+- Error: XTTE0570: Variable $content-type-pattern value does not match declared type String ExactlyOne
+
+### `/repos/phoenixml/xspec/test/threads_description_ignored_no-scenario.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/threads_description_ignored_not-supported.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/threads_description_ignored_one-scenario.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/threads_description_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/threads_description_stylesheet.xspec`
+
+- Stage: Compile
+- Error code: FONS0004
+- Error: Prefix 'sleeper' is not declared in the in-scope namespaces
+
+### `/repos/phoenixml/xspec/test/threads_scenario_ignored.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/threads_scenario_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/threads_scenario_stylesheet.xspec`
+
+- Stage: Compile
+- Error code: FONS0004
+- Error: Prefix 'sleeper' is not declared in the in-scope namespaces
+
+### `/repos/phoenixml/xspec/test/transform-options.xspec`
+
+- Stage: Run
+- Error code: XPDY0002
+- Error: Context item is absent
+
+### `/repos/phoenixml/xspec/test/transform.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/trim.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 3, Pending: 0
+  - FAIL: Scenario for testing function left-trim / Leading trimmed. In-between and trailing intact.
+  - FAIL: Scenario for testing function right-trim / Trailing trimmed. Leading and in-between intact.
+  - FAIL: Scenario for testing function trim / Leading and trailing trimmed. In-between intact.
+
+### `/repos/phoenixml/xspec/test/tunnel-param.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 12, Pending: 0
+  - FAIL: context template-param / with @tunnel enabled as / yes / takes effect.
+  - FAIL: context template-param / with @tunnel enabled as / true / takes effect.
+  - FAIL: context template-param / with @tunnel enabled as / 1 / takes effect.
+  - FAIL: context template-param / with @tunnel disabled as / no / takes effect.
+  - FAIL: context template-param / with @tunnel disabled as / false / takes effect.
+  - FAIL: context template-param / with @tunnel disabled as / 0 / takes effect.
+  - FAIL: template-call template-param / with @tunnel enabled as / yes / takes effect.
+  - FAIL: template-call template-param / with @tunnel enabled as / true / takes effect.
+  - FAIL: template-call template-param / with @tunnel enabled as / 1 / takes effect.
+  - FAIL: template-call template-param / with @tunnel disabled as / no / takes effect.
+  - FAIL: template-call template-param / with @tunnel disabled as / false / takes effect.
+  - FAIL: template-call template-param / with @tunnel disabled as / 0 / takes effect.
+
+### `/repos/phoenixml/xspec/test/tutorial_global-context-item_testable.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/tutorial_helper_ws-only-text_query.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/tutorial_helper_ws-only-text_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XTDE0540
+- Error: XTDE0540: Multiple template rules match the node in a mode with on-multiple-match='fail'
+
+### `/repos/phoenixml/xspec/test/tutorial_namespaces_query.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/tutorial_namespaces_stylesheet.xspec`
+
+- Stage: Compile
+- Error code: XTDE0430
+- Error: XTDE0430: Two namespace nodes with the same prefix '' have different namespace URIs ('http://docbook.org/ns/docbook' and 'http://www.w3.org/1999/xhtml')
+
+### `/repos/phoenixml/xspec/test/tutorial_under-the-hood_compilation-simple-suite.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/tutorial_under-the-hood_compilation-sut_function.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/tutorial_under-the-hood_compilation-sut_template.xspec`
+
+- Stage: Complete
+- Passed: 3, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/tutorial_under-the-hood_compilation-variable.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/tvt-ws.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/tvt-ws_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/tvt-ws_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/tvt-ws_stylesheet.xspec:5:166] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/tvt.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/tvt_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/tvt_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/tvt_stylesheet.xspec:2:2796] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns:mirror="x-urn:…")
+
+### `/repos/phoenixml/xspec/test/undeclare-ns.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/undeclare-ns_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/undeclare-ns_stylesheet.xspec:2:2683] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<global-param-child xmlns="http://www.je…")
+
+### `/repos/phoenixml/xspec/test/unfocused-context.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/unfocused-function-call.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/unfocused-param.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/unfocused-shared-variable_inherited-by-focus.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/unfocused-shared-variable_not-inherited-by-focus.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/unfocused-template-call.xspec`
+
+- Stage: Complete
+- Passed: 0, Failed: 1, Pending: 0
+  - FAIL: Outer scenario / Focused scenario / x:call should be inherited and modified
+
+### `/repos/phoenixml/xspec/test/unfocused-variable_inherited-by-focus.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/unfocused-variable_not-inherited-by-focus.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/uqname-utils.xspec`
+
+- Stage: Run
+- Error code: XPST0008
+- Error: Variable $ridiculous-uri not bound
+
+### `/repos/phoenixml/xspec/test/uri-utils.xspec`
+
+- Stage: Run
+- Error code: FODC0002
+- Error: No document could be retrieved for URI 'catalog-01:/example.xml'
+
+### `/repos/phoenixml/xspec/test/use-uqname.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/use-uqname_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/use-uqname_stylesheet.xspec:3:5] An axis step (Child::element(global-param-child)) was used when the context item is not a node (got xs:string "<use-uqname:global-param-child xmlns:use…")
+
+### `/repos/phoenixml/xspec/test/user-content-utils.xspec`
+
+- Stage: Complete
+- Passed: 65, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/variable-like.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/variable-like_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/variable-like_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPST0008
+- Error: XPST0008: Variable $parent-name not defined
+
+### `/repos/phoenixml/xspec/test/variable.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/variable_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/variable_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPST0008
+- Error: Variable $myv:after_call not bound
+
+### `/repos/phoenixml/xspec/test/version-utils.xspec`
+
+- Stage: Run
+- Error: Transformation terminated: ERROR in x:expect ('Scenario for testing variable saxon-version Assume we test this on Saxon versions from 11.7 to 13.x Greater than or equal to 11.7'): Non-boolean @test must be accompanied by @as, @href, @select, or child node.
+
+### `/repos/phoenixml/xspec/test/wrap.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/wrap_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0004
+- Error: An operand of the except operator is not a node
+
+### `/repos/phoenixml/xspec/test/ws-only-text.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/ws-only-text_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/ws-only-text_stylesheet.xspec:2:2170] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<span xmlns:mirror="x-urn:test:mirror" x…")
+
+### `/repos/phoenixml/xspec/test/x-context.xspec`
+
+- Stage: Run
+- Error: XPST0003: token recognition error at: '&'
+
+### `/repos/phoenixml/xspec/test/x-context_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/xml-base.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/xml-base_stylesheet.xspec`
+
+- Stage: Complete
+- Passed: 4, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/xmlns-imported_stylesheet.xspec`
+
+- Stage: Run
+- Error code: XPTY0020
+- Error: [file:///repos/phoenixml/xspec/test/xmlns-imported_stylesheet.xspec:2:3564] An axis step (Child::node()) was used when the context item is not a node (got xs:string "<tv1:element xmlns:tv1="http://example.o…")
+
+### `/repos/phoenixml/xspec/test/xmlns-imported_xquery.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/xmlns_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/xmlns_stylesheet.xspec`
+
+- Stage: Compile
+- Error code: XTTE0505
+- Error: XTTE0505: Template match="like" return value item of type String does not match declared type Element; value="<x:expect xmlns:_pxbase_="http://phoenixmldb/internal/base-uri" _pxbase_:base="f…"
+
+### `/repos/phoenixml/xspec/test/xmlns_xquery.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/xquery-version_3.1.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/xquery-version_4.0.xspec`
+
+- Stage: Skipped
+- Skip reason: XQuery suite (x:description/@query): this runner drives the XSLT engine only.
+
+### `/repos/phoenixml/xspec/test/xsl-result-document.xspec`
+
+- Stage: Complete
+- Passed: 2, Failed: 4, Pending: 0
+  - FAIL: Calling a template containing xsl:result-document / [@href] / description
+  - FAIL: Calling a template containing xsl:result-document / [@href] / line-number
+  - FAIL: Calling a template containing xsl:result-document / [empty(@href)] / description
+  - FAIL: Calling a template containing xsl:result-document / [empty(@href)] / line-number
+
+### `/repos/phoenixml/xspec/test/xslt1.xspec`
+
+- Stage: Complete
+- Passed: 6, Failed: 1, Pending: 0
+  - FAIL: With 2 text nodes / xslt-version=1.0 in this XSpec file should make this scenario Success when this
+				XSpec file is executed independently. On the other hand, the result should be
+				Failure when this XSpec file is imported to another XSpec file which has
+				xslt-version=2.0 or higher. / Expecting the compiled stylesheet to have version=1.0
+
+### `/repos/phoenixml/xspec/test/xslt3.xspec`
+
+- Stage: Complete
+- Passed: 1, Failed: 1, Pending: 0
+  - FAIL: When testing the let expression in XPath 3.0 / the compiled stylesheet has version=3.0
+
+### `/repos/phoenixml/xspec/test/xslt4-schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/xslt4.xspec`
+
+- Stage: Run
+- Error code: FORG0006
+- Error: FORG0006: Effective boolean value not defined for a sequence of two or more items starting with a non-node value
+
+### `/repos/phoenixml/xspec/test/xspec-name.xspec`
+
+- Stage: Run
+- Error code: XPTY0004
+- Error: Lookup requires a map or array, got XdmText
+
+### `/repos/phoenixml/xspec/test/xspec-sch.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/xspec-uri.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/xspec-uri_schematron.xspec`
+
+- Stage: Skipped
+- Skip reason: Schematron suite (x:description/@schematron): needs XSpec's vendored schxslt2 + XQS pipeline, which this runner does not carry.
+
+### `/repos/phoenixml/xspec/test/xspec-uri_stylesheet.xspec`
+
+- Stage: Complete
+- Passed: 5, Failed: 0, Pending: 0
+
+### `/repos/phoenixml/xspec/test/yes-no-utils.xspec`
+
+- Stage: Complete
+- Passed: 14, Failed: 0, Pending: 0
+
+

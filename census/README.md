@@ -17,7 +17,7 @@ The runner pins `PhoenixmlDb.Xslt` as a package. To measure an unreleased engine
 `PackageReference` for a `ProjectReference` to a local checkout — but never commit it, since
 the path is machine-specific.
 
-## Progression (2026-08-14 → 18)
+## Progression (2026-08-14 → 25)
 
 Counts are **where suites stop**, not what is fixed: a bucket can grow because upstream
 blockers were cleared and more suites now reach it. Stage counts are the real measure, and
@@ -33,6 +33,7 @@ blockers were cleared and more suites now reach it. Stage counts are the real me
 | 06 | + function output base, seam consolidation | 161 | 1 | 0 | XTTE0780 83, FONS0004 43, XTDE1260 27 |
 | 07 | + node atomization for atomic return type | 99 | 63 | 0 | XTSE0010 62, FONS0004 60, XTDE1260 27 |
 | 08 | + attribute-stack restore, result-document empty seq | 99 | 39 | **24** | FONS0004 60, XTDE1260 27, saxon-version 12 |
+| 09 | + typed-template attribute copy, accumulator untypedAtomic | 6 | 104 | **52** | saxon-config 39, XPTY0020 21, XPDY0002 5 |
 
 Everything through 07 shipped as **PhoenixmlDb.Xslt 1.6.4** and **PhoenixmlDb.XQuery 1.6.2**.
 08 is unreleased.
@@ -108,3 +109,32 @@ Every bucket resolved above turned out to be a single cause, which made each fix
 more than its size suggested. That two-minute check repeatedly saved chasing dozens of suites
 individually — and `XTSE0010` is the first one where the check's answer ("one message") still
 hides several distinct causes behind it.
+
+### 09 — the typed-template attribute copy (2026-08-25)
+
+The largest single move so far: **Complete 24 → 52**, and Compile blockers 99 → 6.
+
+One engine fix did most of it. `xsl:copy` of an attribute joined a typed template's result
+sequence only when the engine was not already collecting attributes — but XSpec's
+`local:identity` in `report-sequence.xsl` is called while the CALLER's `xsl:copy` is still
+collecting its own. The attribute was appended to the caller's element and the template
+returned nothing, so every suite that built a report died on
+`XTTE0505 … expected exactly one item, got 0`. Reported by Martin Honnen; fixed in
+phoenixmldb-xslt `945c686`.
+
+**No W3C conformance case covers that shape** — the XSLT census did not move at all when it
+was fixed, while this one moved 28 suites. Fourth time this month a real-world corpus found
+what 31,470 conformance cases could not.
+
+Remaining, largest first:
+
+| bucket | suites | assessment |
+|---|---|---|
+| `saxon-config` | 39 | **out of scope** — suites passing a Saxon configuration file |
+| `XPTY0020` | 21 | largest genuine engine bucket; context item is not a node |
+| `XPDY0002` | 5 | context item absent |
+| `XTDE3052` | 5 | `Package '…' not found` — test fixtures, likely harness |
+| `XTDE0555` | 4 | no match in a mode with `on-no-match="fail"` |
+
+Measured against the engine at phoenixmldb-xslt `945c686` via a temporary ProjectReference,
+not against published 1.6.7 — those fixes are unreleased.
