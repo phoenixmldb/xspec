@@ -36,6 +36,7 @@ blockers were cleared and more suites now reach it. Stage counts are the real me
 | 09 | + typed-template attribute copy, accumulator untypedAtomic | 6 | 104 | **52** | saxon-config 39, XPTY0020 21, XPDY0002 5 |
 | 10 | + one global content-binding path (was two) | 6 | 96 | **60** | saxon-config 47, XPDY0002 5, XPST0008 5 |
 | 11 | published 1.6.10 (Martin's format-* and cross-store fixes) | 6 | 96 | **60** | saxon-config 47, XPDY0002 6, XPST0008 5 |
+| 12 | + typed-body weave no longer double-counts text | 6 | 94 | **62** | saxon-config 47, XPDY0002 6, XPST0008 5 |
 
 Everything through 07 shipped as **PhoenixmlDb.Xslt 1.6.4** and **PhoenixmlDb.XQuery 1.6.2**.
 08 is unreleased.
@@ -189,3 +190,30 @@ failing at a different point than before, which is worth a look rather than an a
 Against the ~115 realistically reachable suites (284 - 122 skipped - 47 saxon-config), 60
 Complete is a little over half. The next levers are the 5-6 suite clusters — XPDY0002,
 XPST0008, XTDE3052 — each small enough that the one-cause-or-many check costs two minutes.
+
+### 12 — the flat census was hiding movement (2026-08-28)
+
+**Complete 60 -> 62, XTTE0505 5 -> 3.** Measured with a ProjectReference; the fix is not yet
+released.
+
+Census 11 looked completely flat: 0 suites changed stage. The only signal was inside the
+buckets — XPDY0002 5 -> 6 and XTTE0505 3 -> 5 — which is easy to file as noise. It was not,
+and the two had different causes:
+
+- **XPDY0002 grew for a reporting reason.** `issue-59_stylesheet.xspec` was always failing
+  with XPDY0002; it just had no error CODE, because that error was thrown as a bare
+  InvalidOperationException. Giving W3C codes an ErrorCode moved it out of the uncoded pile.
+  61 -> 56 failing suites now report an error without a code.
+- **XTTE0505 grew because suites got FURTHER.** The nested-kind-test namespace fix let four
+  templates match for the first time. Two then hit XTDE0540 (they match too many rules — you
+  cannot be ambiguous without matching at all) and two hit XTTE0505.
+
+Chasing that second group found a real defect: `WriteTextItem` writes text to BOTH the
+sequence accumulator and `_output` inside a function body, and the weave that recombines them
+assumed they were disjoint — so it emitted the item and then the same text again. A template
+declared `as="text()"` returned two items with identical content. Fixed in phoenixmldb-xslt
+`b6d623e`; the weave now records how much output each item consumed.
+
+The lesson for reading this census: **stage counts are coarse.** A flat Complete can conceal
+several suites advancing past one blocker onto the next. Diff the per-suite error codes, not
+just the stages.
