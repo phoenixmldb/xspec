@@ -35,6 +35,7 @@ blockers were cleared and more suites now reach it. Stage counts are the real me
 | 08 | + attribute-stack restore, result-document empty seq | 99 | 39 | **24** | FONS0004 60, XTDE1260 27, saxon-version 12 |
 | 09 | + typed-template attribute copy, accumulator untypedAtomic | 6 | 104 | **52** | saxon-config 39, XPTY0020 21, XPDY0002 5 |
 | 10 | + one global content-binding path (was two) | 6 | 96 | **60** | saxon-config 47, XPDY0002 5, XPST0008 5 |
+| 11 | published 1.6.10 (Martin's format-* and cross-store fixes) | 6 | 96 | **60** | saxon-config 47, XPDY0002 6, XPST0008 5 |
 
 Everything through 07 shipped as **PhoenixmlDb.Xslt 1.6.4** and **PhoenixmlDb.XQuery 1.6.2**.
 08 is unreleased.
@@ -161,3 +162,30 @@ in one step. It remains out of scope: those suites pass a Saxon configuration fi
 Remaining, largest first: saxon-config 47 (out of scope), XPDY0002 5, XPST0008 5, XTDE3052 5,
 XPDY0050 4, XTDE0555 4. Against the ~123 realistically reachable suites (284 - 122 skipped -
 47 saxon-config + overlap), 60 Complete is roughly half.
+
+### 11 — no movement, and why that is the expected result (2026-08-27)
+
+Measured against the PUBLISHED PhoenixmlDb.Xslt 1.6.10, not a ProjectReference. Identical to
+census 10: Compile 6, Run 96, **Complete 60**, and **0 suites changed stage**.
+
+That is not a disappointing result, it is the wrong instrument. Of the five fixes released
+since census 10, only one touches what this census measures:
+
+| fix | where it bites |
+|---|---|
+| nested kind-test namespaces | cleared XTDE0555 — already counted in census 10 |
+| cross-store node ancestors | `fn:transform` called from XQUERY (sxq), not these XSLT suites |
+| `format-*` casts untypedAtomic | XSpec's REPORTER stage, `format-xspec-report.xsl` |
+| CLI reports instead of crash-dumping | error presentation, not transform behaviour |
+| W3C codes carry ErrorCode/Location | diagnostics only |
+
+This census runs `test/*.xspec` through compile -> run -> complete and stops at the XML
+report. Martin Honnen is past those stages and into HTML report generation, which is the step
+AFTER what is measured here. A flat census was the correct expectation.
+
+One genuine shift despite 0 stage changes: XPDY0002 5 -> 6 and XTTE0505 3 -> 5. Suites are
+failing at a different point than before, which is worth a look rather than an assumption.
+
+Against the ~115 realistically reachable suites (284 - 122 skipped - 47 saxon-config), 60
+Complete is a little over half. The next levers are the 5-6 suite clusters — XPDY0002,
+XPST0008, XTDE3052 — each small enough that the one-cause-or-many check costs two minutes.

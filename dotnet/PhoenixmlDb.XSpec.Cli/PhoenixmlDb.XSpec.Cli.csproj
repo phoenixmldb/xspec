@@ -37,6 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PhoenixmlDb.Xslt" Version="1.6.8" />
+    <PackageReference Include="PhoenixmlDb.Xslt" Version="1.6.10" />
   </ItemGroup>
 </Project>
