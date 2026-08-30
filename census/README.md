@@ -17,7 +17,7 @@ The runner pins `PhoenixmlDb.Xslt` as a package. To measure an unreleased engine
 `PackageReference` for a `ProjectReference` to a local checkout — but never commit it, since
 the path is machine-specific.
 
-## Progression (2026-08-14 → 30)
+## Progression (2026-08-14 → 31)
 
 Counts are **where suites stop**, not what is fixed: a bucket can grow because upstream
 blockers were cleared and more suites now reach it. Stage counts are the real measure, and
@@ -40,6 +40,7 @@ blockers were cleared and more suites now reach it. Stage counts are the real me
 | 14 | + globals declared `as="empty-sequence()"` | 6 | 76 | **80** | XPST0008 14, XPDY0050 6, XTDE3052 5 |
 | 15 | + `fn:transform` finds namespaced templates, supplies context | 6 | 70 | **86** | XPST0008 15, XPDY0050 6, XPTY0004 5 |
 | 16 | + namespaces resolved inside wrapper patterns; accumulator sequences | 6 | 59 | **97** | XPTY0004 5, XTDE3052 5, FOTY0013 4 |
+| 17 | + item()* bodies keep atomic values; xmlns="" recorded; deep-equal maps | 5 | 55 | **102** | XPDY0002 4, XPDY0050 4, XPTY0004 4 |
 
 Everything through 07 shipped as **PhoenixmlDb.Xslt 1.6.4** and **PhoenixmlDb.XQuery 1.6.2**.
 08 is unreleased.
@@ -274,3 +275,50 @@ stopped completing.
 **The distribution is now flat**: the largest bucket is 5 suites and no error code dominates.
 The era of one cause clearing a dozen suites looks finished; what remains reads as many small
 causes, and should be picked off per-suite rather than per-bucket.
+
+### 17 — the assertion numbers finally move (2026-08-31)
+
+Complete 97 -> **102**, and for the first time the *assertion* counts move sharply rather than
+the stage counts: **passing 275 -> 498, failing 425 -> 170**. Every previous sweep moved suites
+between stages; this one fixed what the suites were measuring.
+
+One cause did most of it. A variable body declared `as="item()*"` wrapped every string item it
+received into a TEXT NODE:
+
+```
+<xsl:template name="two" as="item()*"><xsl:sequence select="('a','b')"/></xsl:template>
+<xsl:variable name="v" as="item()*"><xsl:call-template name="two"/></xsl:variable>
+$v[1] instance of xs:string   ->  false; it was a text node
+```
+
+The wrapping is right for `text()*` and `node()*`, which demand nodes. `item()` is the union of
+nodes and atomic values, so there it silently retyped everything.
+
+**Why it hid for seventeen sweeps.** The values still look correct — a text node and a string
+serialize identically — so nothing broke until something compared them *by type*. That is
+precisely what an `x:expect` with `@test` does: XSpec deep-equals the test expression's value
+against `@select`. So every expect whose test yielded atomic values failed on the type rather
+than the value, across the whole corpus, while the reports showed values that matched. And
+`as="xs:string*"` masks it completely, because that type coerces the text nodes back to strings.
+
+The route in was `undeclare-ns_stylesheet`. Its reported actual and expected read as the same
+prefixes, which is what made the type the only remaining suspect: expected `exStr=true`, actual
+`trStr=false`, same values.
+
+Two wrong turns, worth recording because the code invites both:
+
+| Looked like the cause | Actually |
+|---|---|
+| `needsTextCollection` (~21574) — reads exactly like the switch | dead code, assigned and never used |
+| `ItemType.Item` in `isNodeItemType` (~21525) — also miscategorised | removing it changed nothing observable; left alone rather than changed on speculation |
+
+Two smaller fixes landed in the same sweep: `xmlns=""` is now recorded in the node model (it was
+dropped entirely, so `in-scope-prefixes` and the `namespace::` axis inherited a default the
+element had explicitly undeclared), and `xsl:copy` no longer moves a no-namespace element into
+the enclosing default namespace. Those two took `undeclare-ns_stylesheet` from crashing to
+running; the `item()*` fix took it from 0/12 to 12/12.
+
+**Reading for next time:** stage counts are the coarse measure and assertion counts the fine
+one, and this sweep is the case where only the fine one moved. A census that shows suites
+completing but assertions failing en masse is evidence of a systematic defect in what the
+assertions compare — not of many small unrelated failures.
