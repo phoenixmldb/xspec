@@ -17,7 +17,7 @@ The runner pins `PhoenixmlDb.Xslt` as a package. To measure an unreleased engine
 `PackageReference` for a `ProjectReference` to a local checkout — but never commit it, since
 the path is machine-specific.
 
-## Progression (2026-08-14 → 25)
+## Progression (2026-08-14 → 30)
 
 Counts are **where suites stop**, not what is fixed: a bucket can grow because upstream
 blockers were cleared and more suites now reach it. Stage counts are the real measure, and
@@ -37,6 +37,9 @@ blockers were cleared and more suites now reach it. Stage counts are the real me
 | 10 | + one global content-binding path (was two) | 6 | 96 | **60** | saxon-config 47, XPDY0002 5, XPST0008 5 |
 | 11 | published 1.6.10 (Martin's format-* and cross-store fixes) | 6 | 96 | **60** | saxon-config 47, XPDY0002 6, XPST0008 5 |
 | 12 | + typed-body weave no longer double-counts text | 6 | 94 | **62** | saxon-config 47, XPDY0002 6, XPST0008 5 |
+| 14 | + globals declared `as="empty-sequence()"` | 6 | 76 | **80** | XPST0008 14, XPDY0050 6, XTDE3052 5 |
+| 15 | + `fn:transform` finds namespaced templates, supplies context | 6 | 70 | **86** | XPST0008 15, XPDY0050 6, XPTY0004 5 |
+| 16 | + namespaces resolved inside wrapper patterns; accumulator sequences | 6 | 59 | **97** | XPTY0004 5, XTDE3052 5, FOTY0013 4 |
 
 Everything through 07 shipped as **PhoenixmlDb.Xslt 1.6.4** and **PhoenixmlDb.XQuery 1.6.2**.
 08 is unreleased.
@@ -217,3 +220,57 @@ declared `as="text()"` returned two items with identical content. Fixed in phoen
 The lesson for reading this census: **stage counts are coarse.** A flat Complete can conceal
 several suites advancing past one blocker onto the next. Diff the per-suite error codes, not
 just the stages.
+
+### 16 — namespaces were never resolved inside a wrapper pattern (2026-08-30)
+
+Complete 86 -> **97**, and `XPST0008` fell from 15 suites to 3. One cause.
+
+`ResolveNamespacesInPattern` walked PathPattern, UnionPattern, ExceptPattern and
+IntersectPattern and stopped. Five pattern subclasses wrap another pattern and were never
+visited: `ParenthesizedPositionalPattern.Inner`, and the `Continuation` of KeyPattern,
+IdPattern, VariableReferencePattern and DocFunctionPattern. The wrapped pattern kept its
+prefixes unresolved, so its name test compared against an unresolved NamespaceId and matched
+nothing whatsoever.
+
+The shape of the failure is why it lasted this long:
+
+```
+match="(x:a | x:b)[true()]"        matched NOTHING
+match="x:a[true()] | x:b[true()]"  worked   -- no wrapper; UnionPattern IS visited
+match="(a | b)[true()]"            worked   -- no prefix to resolve
+```
+
+Drop either the parentheses or the prefix and the bug disappears, and the obvious test for
+parenthesized patterns uses no prefix. It is the same defect as the KindTest-nested NameTest
+fix in census 12, one nesting level further out.
+
+XSpec has exactly five such patterns and all five were dead:
+
+| Pattern | What was silently off |
+|---|---|
+| `(x:scenario/x:param \| x:scenario/x:variable \| x:context)[...]` | the `stacked-vardecls` accumulator |
+| `(x:scenario \| x:expect)[@pending] \| x:pending` | pending detection |
+| `(x:scenario \| x:expect)[@pending]` | pending detection |
+| `(x:param \| x:variable)[x:reason-for-pending(.) => empty()]` | pending variable declarations |
+| `(@id \| @context)[parent::x:expect-rule]` | expect-rule attribute handling |
+
+**How it presented.** The accumulator never fired, so no variable was ever pushed, so every
+compiled `x:expect` template was generated without params for the variables in scope. The
+suite then died at run time with `XPST0008: Variable $myv:after_call not bound` — naming a
+variable the user really had declared, several stages away from the pattern that failed. The
+route in was noticing which variables survived compilation: those before `x:context` did,
+those after `x:call` did not. Position, not namespace, is what pointed at the accumulator.
+
+Two accumulator bugs surfaced on the way and are fixed as well, though neither moved this
+census on its own: `CoerceAccumulatorValue` returned `List<object?>` for a sequence type, which
+the engine reads as an XDM *array* (`ItemType.Array => item is List<object?>`), so `count()`
+answered 1 however many items had accumulated; and `CoerceAtomicValue` atomized
+unconditionally, so an `as="element()*"` accumulator lost its nodes to xs:untypedAtomic.
+
+Assertions executed went 596 -> 700 and passing 257 -> 275. Failures rose too, which is the
+usual consequence of suites getting further, not a regression — no suite that completed before
+stopped completing.
+
+**The distribution is now flat**: the largest bucket is 5 suites and no error code dominates.
+The era of one cause clearing a dozen suites looks finished; what remains reads as many small
+causes, and should be picked off per-suite rather than per-bucket.
