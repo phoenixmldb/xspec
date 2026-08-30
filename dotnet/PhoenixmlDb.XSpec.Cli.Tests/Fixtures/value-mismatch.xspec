@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="identity.xsl">
+  <x:scenario label="a value that does not match">
+    <x:context><doc>hello</doc></x:context>
+    <x:expect label="expects different text"><doc>goodbye</doc></x:expect>
+  </x:scenario>
+</x:description>

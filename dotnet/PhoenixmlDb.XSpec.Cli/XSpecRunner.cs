@@ -225,10 +225,66 @@ public static class XSpecRunner
                     ? XSpecOutcome.Pass
                     : XSpecOutcome.Fail;
 
-            outcomes.Add(new XSpecTestOutcome(BuildLabel(test, ns), outcome));
+            // Only failures need the values. Passing assertions would just be noise, and the
+            // serialization is not free on a large report.
+            string? expected = null, actual = null;
+            if (outcome == XSpecOutcome.Fail)
+            {
+                expected = Serialize(test.Element(ns + "expect"));
+                // A test carries its own x:result only when an @test predicate produced a value.
+                // Otherwise what the code under test returned lives on the enclosing scenario,
+                // shared by every assertion in it.
+                actual = Serialize(test.Element(ns + "result"))
+                      ?? Serialize(test.Ancestors(ns + "scenario")
+                                       .Select(sc => sc.Element(ns + "result"))
+                                       .FirstOrDefault(r => r != null));
+            }
+
+            outcomes.Add(new XSpecTestOutcome(BuildLabel(test, ns), outcome, expected, actual));
         }
         return outcomes;
     }
+
+    /// <summary>
+    /// Renders the payload of an <c>x:expect</c> or <c>x:result</c> for display. XSpec wraps
+    /// constructed content in <c>x:content-wrap</c>, which is scaffolding rather than part of
+    /// what the author wrote, so it is unwrapped. A <c>@select</c> with no children is an
+    /// expression rather than a value and is shown as written.
+    /// </summary>
+    private static string? Serialize(XElement? element)
+    {
+        if (element is null)
+            return null;
+
+        XNamespace ns = XSpecNs;
+        var payload = element.Elements().ToList();
+        if (payload.Count == 1 && payload[0].Name == ns + "content-wrap")
+            payload = payload[0].Elements().ToList();
+
+        if (payload.Count == 0)
+        {
+            var text = element.Value.Trim();
+            if (text.Length > 0)
+                return text;
+            return element.Attribute("select")?.Value;
+        }
+
+        return string.Join("\n", payload.Select(e => Normalize(e).ToString(SaveOptions.None)));
+    }
+
+    /// <summary>
+    /// Rebuilds an element so the same namespace always renders the same way. The two sides of a
+    /// failed assertion reach the report through different construction paths and pick up
+    /// whatever prefix bindings were in scope there, so an identical namespace can serialize as
+    /// <c>x:greeting xmlns:x="..."</c> on one side and <c>greeting xmlns="..."</c> on the other.
+    /// Printing them like that hides the difference the reader is actually looking for. Copying
+    /// the tree without the inherited declarations lets XLinq emit minimal, consistent ones.
+    /// </summary>
+    private static XElement Normalize(XElement source) =>
+        new(source.Name,
+            source.Attributes().Where(a => !a.IsNamespaceDeclaration)
+                  .Select(a => new XAttribute(a.Name, a.Value)),
+            source.Nodes().Select(n => n is XElement child ? Normalize(child) : n));
 
     /// <summary>
     /// Joins every enclosing <c>x:scenario/x:label</c> (outermost first) with the test's own

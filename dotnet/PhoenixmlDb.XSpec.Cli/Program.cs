@@ -34,7 +34,13 @@ foreach (var xspecPath in args)
             if (result.Failed > 0)
                 exitCode = 1;
             foreach (var test in result.Tests.Where(t => t.Outcome == XSpecOutcome.Fail))
+            {
                 Console.WriteLine($"  FAIL  {test.Label}");
+                // A failing test that reports only its own name is worse than useless: it tells
+                // you something broke and nothing about what. Show the two values that differ.
+                WriteValue("expected", test.Expected);
+                WriteValue("actual", test.Actual);
+            }
             break;
 
         case XSpecStage.Skipped:
@@ -156,4 +162,25 @@ static TimeSpan CensusSuiteTimeout()
         System.Globalization.CultureInfo.InvariantCulture, out var seconds) && seconds > 0
         ? TimeSpan.FromSeconds(seconds)
         : TimeSpan.FromSeconds(300);
+}
+
+/// <summary>
+/// Prints one side of a failed assertion, indented under the FAIL line. Multi-line values are
+/// aligned so the two sides can be compared by eye, and long ones are clipped rather than
+/// flooding the terminal when a scenario returns a whole document.
+/// </summary>
+static void WriteValue(string caption, string? value)
+{
+    if (string.IsNullOrWhiteSpace(value))
+        return;
+
+    const int maxLines = 12;
+    var lines = value.Replace("\r\n", "\n", StringComparison.Ordinal).Split('\n');
+    var shown = lines.Length > maxLines ? lines[..maxLines] : lines;
+
+    Console.WriteLine($"          {caption}:");
+    foreach (var line in shown)
+        Console.WriteLine($"            {line}");
+    if (lines.Length > maxLines)
+        Console.WriteLine($"            ... {lines.Length - maxLines} more line(s)");
 }

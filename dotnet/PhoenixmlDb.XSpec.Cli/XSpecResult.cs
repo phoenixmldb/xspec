@@ -31,8 +31,26 @@ public enum XSpecOutcome
     Pending
 }
 
-/// <summary>One compiled assertion from the suite's <c>x:report</c>.</summary>
-public record XSpecTestOutcome(string Label, XSpecOutcome Outcome);
+/// <summary>
+/// One compiled assertion from the suite's <c>x:report</c>.
+/// </summary>
+/// <param name="Label">The scenario path joined with the test's own label.</param>
+/// <param name="Outcome">Pass, fail, or pending.</param>
+/// <param name="Expected">
+/// Serialized content of the test's <c>x:expect</c>, or null when the assertion is a boolean
+/// <c>@test</c> predicate with nothing to compare against. Only populated for failures.
+/// </param>
+/// <param name="Actual">
+/// Serialized content of the applicable <c>x:result</c>. A test may carry its own when a
+/// <c>@test</c> predicate produced a value; otherwise this is the enclosing scenario's result,
+/// which is where XSpec records what the code under test actually returned. Only populated for
+/// failures.
+/// </param>
+public record XSpecTestOutcome(
+    string Label,
+    XSpecOutcome Outcome,
+    string? Expected = null,
+    string? Actual = null);
 
 /// <summary>
 /// The outcome of running a single <c>.xspec</c> suite through <see cref="XSpecRunner"/>.

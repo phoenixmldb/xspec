@@ -21,57 +21,90 @@ public class XSpecRunnerTests
     }
 
     /// <summary>
-    /// Records exactly how far the real XSpec compiler gets today — a characterisation test,
-    /// not an aspiration.
+    /// Both fixtures now run end to end. This test previously asserted the opposite, pinning the
+    /// two compile blockers of the day (<c>XTDE0930</c> from a namespace walk that did not visit
+    /// ancestors, and a <c>startIndex</c> fault in the user-function return path) and saying in
+    /// its own remarks that going red was the signal to strengthen it. It went red, so here is
+    /// the stronger version.
     /// </summary>
     /// <remarks>
     /// <para>
-    /// These two fixtures were originally asserted to reach <see cref="XSpecStage.Complete"/>.
-    /// They never have. Against the pinned PhoenixmlDb.Xslt 1.6.1 both stop at <c>XTDE0930</c> in
-    /// the compiler's namespace copying — the same defect <c>BaseUriHazardTests</c> had to work
-    /// around, and which that class's own remarks describe as blocking every input. The original
-    /// assertions were therefore red from the day they were written. Asserting a future state
-    /// does not make it true; it makes the suite red and stops anyone noticing when the actual
-    /// behaviour changes.
+    /// The assertion this fixture makes is <c>exists($x:result//doc)</c>, which is unprefixed and
+    /// therefore looks for <c>doc</c> in NO namespace. It should pass: the source writes
+    /// <c>&lt;doc&gt;hello&lt;/doc&gt;</c> inside <c>x:context</c> with no default namespace in
+    /// scope, and the stylesheet is a shallow-copy identity transform.
     /// </para>
     /// <para>
-    /// Two blockers are accepted, because which one you see depends on the engine underneath:
+    /// It does not pass. The value the runner reports is
+    /// <c>&lt;doc xmlns="http://www.jenitennison.com/xslt/xspec"&gt;hello&lt;/doc&gt;</c>, so the
+    /// result lands in the XSpec namespace and the predicate cannot match. The engine is not at
+    /// fault for the serialization: constructing or copying a no-namespace element into a
+    /// default-namespaced parent emits <c>xmlns=""</c> correctly in both cases, verified
+    /// directly. The namespace is acquired somewhere in the compiled namespace-copying path.
     /// </para>
-    /// <list type="number">
-    /// <item><description>
-    /// <c>XTDE0930</c> — the pinned 1.6.1. fn:namespace-uri-for-prefix did not walk ancestors, so
-    /// XSpec's <c>x:copy-of-namespaces</c> fed an empty sequence into <c>xsl:namespace</c>.
-    /// </description></item>
-    /// <item><description>
-    /// <c>startIndex cannot be larger than length of string</c> — with the XQuery fix in
-    /// (PhoenixmlDb.XQuery routes that function through the shared in-scope namespace walk).
-    /// Compilation then gets FURTHER and dies on the next defect: the XSLT engine's user-function
-    /// return path finds its output buffer shorter on the way out of a function body than on the
-    /// way in.
-    /// </description></item>
-    /// </list>
     /// <para>
-    /// Both are asserted precisely, so this goes RED the moment the engine gets past them —
-    /// which is the signal to strengthen it back to the Complete assertion, and to restore
-    /// <c>trivial-fail</c>'s point: a failing assertion is a completed run, not a broken one, and
-    /// the census must be able to tell an engine bug from a test that simply disagrees.
+    /// Asserted as it currently behaves, deliberately, so this goes RED the moment the namespace
+    /// is fixed. That is the signal to restore the assertion above it: 1 passed, 0 failed. The
+    /// same trick the previous version of this test played on us, which is how the bug above was
+    /// found at all.
     /// </para>
     /// </remarks>
-    [Theory]
-    [InlineData("trivial-pass.xspec")]
-    [InlineData("trivial-fail.xspec")]
-    public async Task CompilerDoesNotYetReachCompletion_AndFailsAtAKnownBlocker(string fixture)
+    [Fact]
+    public async Task TrivialPassRunsEndToEnd_ButItsAssertionFailsOnANamespace()
     {
         var result = await XSpecRunner.RunAsync(
-            Path.Combine(Fixtures.Dir, fixture), CancellationToken.None);
+            Path.Combine(Fixtures.Dir, "trivial-pass.xspec"), CancellationToken.None);
 
-        Assert.Equal(XSpecStage.Compile, result.Stage);
+        Assert.Equal(XSpecStage.Complete, result.Stage);
 
-        var message = result.ErrorMessage ?? "";
-        var known = message.Contains("XTDE0930", StringComparison.Ordinal)
-                 || message.Contains("startIndex cannot be larger than length of string", StringComparison.Ordinal);
-        Assert.True(known,
-            $"expected one of the two known compile blockers, got: {result.ErrorCode} {message}");
+        var failure = Assert.Single(result.Tests, t => t.Outcome == XSpecOutcome.Fail);
+        Assert.Contains("http://www.jenitennison.com/xslt/xspec", failure.Actual!, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    /// The point the earlier version lost: a failing assertion is a <em>completed</em> run, not a
+    /// broken one. The census has to be able to tell an engine defect from a test that simply
+    /// disagrees with the code, and those two look identical if a disagreement is reported as a
+    /// stage failure.
+    /// </summary>
+    [Fact]
+    public async Task TrivialFailRunsEndToEndAndReportsAFailedAssertion()
+    {
+        var result = await XSpecRunner.RunAsync(
+            Path.Combine(Fixtures.Dir, "trivial-fail.xspec"), CancellationToken.None);
+
+        Assert.Equal(XSpecStage.Complete, result.Stage);
+        Assert.Equal(0, result.Passed);
+        Assert.Equal(1, result.Failed);
+        Assert.Null(result.ErrorMessage);
+    }
+
+    /// <summary>
+    /// A failing assertion must carry what was expected and what actually happened. Reporting
+    /// only the test's name tells you something broke and nothing about what, which is a worse
+    /// experience than the xUnit output a .NET developer is arriving from, and it is the screen
+    /// the whole bug-reporting on-ramp rests on.
+    /// </summary>
+    [Fact]
+    public async Task AFailedAssertionCarriesExpectedAndActual()
+    {
+        var result = await XSpecRunner.RunAsync(
+            Path.Combine(Fixtures.Dir, "value-mismatch.xspec"), CancellationToken.None);
+
+        Assert.Equal(XSpecStage.Complete, result.Stage);
+        var failure = Assert.Single(result.Tests, t => t.Outcome == XSpecOutcome.Fail);
+
+        Assert.NotNull(failure.Expected);
+        Assert.NotNull(failure.Actual);
+        Assert.Contains("goodbye", failure.Expected, StringComparison.Ordinal);
+        Assert.Contains("hello", failure.Actual, StringComparison.Ordinal);
+
+        // Both sides reach the report by different construction paths and pick up whatever
+        // prefix bindings were in scope, so the same namespace can render as x:doc on one side
+        // and doc on the other. Printing them like that hides the difference the reader wants.
+        Assert.Equal(
+            failure.Expected.Contains("xmlns", StringComparison.Ordinal),
+            failure.Actual.Contains("xmlns", StringComparison.Ordinal));
     }
 
     [Fact]
