@@ -11,7 +11,7 @@
     <!-- Tracks the engine family version: PhoenixmlDb.Core / .XQuery / .Xslt, the `xslt`
          tool and this one all ship as one number from 1.6.5, so a matching version means a
          compatible set. Bump this together with the engines, not independently. -->
-    <Version>1.6.11</Version>
+    <Version>1.6.13</Version>
     <Authors>endpointsystems</Authors>
     <Description>Run XSpec test suites for XSLT against the PhoenixmlDb engine. No JVM and no Saxon required — the XSpec stylesheets are embedded in the tool.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -37,6 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PhoenixmlDb.Xslt" Version="1.6.11" />
+    <PackageReference Include="PhoenixmlDb.Xslt" Version="1.6.13" />
   </ItemGroup>
 </Project>
