@@ -41,6 +41,7 @@ blockers were cleared and more suites now reach it. Stage counts are the real me
 | 15 | + `fn:transform` finds namespaced templates, supplies context | 6 | 70 | **86** | XPST0008 15, XPDY0050 6, XPTY0004 5 |
 | 16 | + namespaces resolved inside wrapper patterns; accumulator sequences | 6 | 59 | **97** | XPTY0004 5, XTDE3052 5, FOTY0013 4 |
 | 17 | + item()* bodies keep atomic values; xmlns="" recorded; deep-equal maps | 5 | 55 | **102** | XPDY0002 4, XPDY0050 4, XPTY0004 4 |
+| 18 | published PhoenixmlDb.Xslt 2.6.0 / XQuery 2.6.0 / Core 2.1.0 (first measurement since 1.6.13) | 4 | 19 | **139** | XPST0008 4, XPTY0004 4, FODC0002 3, XTDE0540 3 |
 
 Everything through 07 shipped as **PhoenixmlDb.Xslt 1.6.4** and **PhoenixmlDb.XQuery 1.6.2**.
 08 is unreleased.
@@ -322,3 +323,21 @@ running; the `item()*` fix took it from 0/12 to 12/12.
 one, and this sweep is the case where only the fine one moved. A census that shows suites
 completing but assertions failing en masse is evidence of a systematic defect in what the
 assertions compare — not of many small unrelated failures.
+
+## Census 18: the published 2.6.0 packages (2026-10-07)
+
+Measured against the **published** packages (Xslt 2.6.0, XQuery 2.6.0, Core 2.1.0), not a source
+build. Five weeks and the whole 2.x series since census 17.
+
+| | Census 17 (1.6.x) | Census 18 (2.6.0) |
+|---|---|---|
+| Complete | 102 | **139** |
+| Run | 55 | 19 |
+| Compile | 5 | 4 |
+| Assertions passing | 498 | **1,112** |
+| Assertions failing | 170 | 256 |
+
+38 suites moved up a stage; **one moved down**: `external_avt-ws_stylesheet` went from Complete to
+Run (XPTY0004, a single string returned through `fn:transform` arrives as two items;
+phoenixmldb-xslt#314). No Complete suite lost passing assertions. Failing assertions rose because
+37 more suites now run to the end, as the census note above anticipates; passing more than doubled.
